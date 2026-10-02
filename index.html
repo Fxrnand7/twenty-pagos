@@ -89,11 +89,10 @@ font-weight:400;
 
 .detalle-producto{
 font-size:11px;
-font-weight:300;
 color:#777;
 line-height:1.8;
-text-transform:uppercase;
 margin-top:10px;
+text-transform:uppercase;
 }
 
 
@@ -248,7 +247,7 @@ border:1px solid #111;
 
 
 /* =====================================================
-   DATOS DEL CLIENTE
+   CAMPOS
 ===================================================== */
 
 .campo{
@@ -276,6 +275,15 @@ outline:none;
 
 .campo input:focus{
 border-color:#111;
+}
+
+.dos-campos{
+display:flex;
+gap:12px;
+}
+
+.dos-campos .campo{
+flex:1;
 }
 
 
@@ -373,15 +381,6 @@ background:#fff;
 display:block;
 }
 
-.dos-campos{
-display:flex;
-gap:12px;
-}
-
-.dos-campos .campo{
-flex:1;
-}
-
 .info-yape{
 font-size:11px;
 line-height:1.7;
@@ -391,7 +390,7 @@ margin-bottom:15px;
 
 
 /* =====================================================
-   BOTÓN PAGAR
+   BOTÓN
 ===================================================== */
 
 .pagar{
@@ -597,7 +596,6 @@ grid-column:2;
 
 <body>
 
-
 <div class="pago">
 
 <div class="logo">
@@ -668,8 +666,7 @@ CARGANDO CARRITO...
 
 <div
 id="listaCarritoPago"
-class="lista-carrito-pago"
->
+class="lista-carrito-pago">
 </div>
 
 </div>
@@ -731,7 +728,7 @@ Selecciona una talla antes de continuar.
 
 
 <!-- =====================================================
-     DATOS CLIENTE
+     DATOS DEL CLIENTE
 ===================================================== -->
 
 <div class="seccion">
@@ -1011,9 +1008,7 @@ id="botonPagar"
 class="boton-pagar"
 type="button"
 >
-
 CONTINUAR
-
 </button>
 
 </div>
@@ -1048,7 +1043,7 @@ Procesando compra...
 
 
 <!-- =====================================================
-     COMPRA FINALIZADA
+     FINALIZADA
 ===================================================== -->
 
 <div
@@ -1084,12 +1079,11 @@ type="text/javascript"
 src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
 
-
 <script>
 
 emailjs.init({
-publicKey:
-"FdHYCIvlgbsKGhjYB"
+  publicKey:
+  "FdHYCIvlgbsKGhjYB"
 });
 
 </script>
@@ -1098,7 +1092,7 @@ publicKey:
 <script>
 
 /* =====================================================
-   API DEL CARRITO
+   API
 ===================================================== */
 
 const API_URL =
@@ -1109,22 +1103,7 @@ const CLIENTE_ID =
 
 
 /* =====================================================
-   PARÁMETRO
-===================================================== */
-
-const parametros =
-new URLSearchParams(
-window.location.search
-);
-
-const numeroProducto =
-parseInt(
-parametros.get("producto")
-);
-
-
-/* =====================================================
-   CATÁLOGO
+   PRODUCTOS
 ===================================================== */
 
 const productos = {
@@ -1396,26 +1375,29 @@ tallas:["S","M","L","XL"]
 
 
 /* =====================================================
-   VARIABLES
+   DETECTAR MODO
 ===================================================== */
 
-let modoCarrito =
-!numeroProducto ||
-!productos[numeroProducto];
+const parametros =
+new URLSearchParams(
+window.location.search
+);
 
-let productoActual =
+const numeroProducto =
+parseInt(
+parametros.get("producto")
+);
+
+const modoCarrito =
+!(
+numeroProducto &&
+productos[numeroProducto]
+);
+
+const productoActual =
 modoCarrito
 ? null
 : productos[numeroProducto];
-
-let colorSeleccionado =
-"";
-
-let tallaSeleccionada =
-"";
-
-let carritoPago =
-[];
 
 
 /* =====================================================
@@ -1534,6 +1516,20 @@ document.getElementById(
 
 
 /* =====================================================
+   VARIABLES
+===================================================== */
+
+let colorSeleccionado =
+"";
+
+let tallaSeleccionada =
+"";
+
+let carritoPago =
+[];
+
+
+/* =====================================================
    INICIAR
 ===================================================== */
 
@@ -1541,7 +1537,9 @@ document.addEventListener(
 "DOMContentLoaded",
 function(){
 
-if(modoCarrito){
+if(
+modoCarrito
+){
 
 cargarCarritoCompleto();
 
@@ -1556,7 +1554,7 @@ cargarProductoIndividual();
 
 
 /* =====================================================
-   CARGAR PRODUCTO INDIVIDUAL
+   PRODUCTO INDIVIDUAL
 ===================================================== */
 
 function cargarProductoIndividual(){
@@ -1591,10 +1589,6 @@ cantidadTotalProductos.textContent =
 "1";
 
 
-detalleProducto.textContent =
-"";
-
-
 cargarColoresIndividual();
 
 cargarTallasIndividual();
@@ -1617,13 +1611,12 @@ productoActual.colores
 colores.innerHTML =
 "";
 
-
 galeria.innerHTML =
 "";
 
 
 if(
-nombresColores.length === 0
+!nombresColores.length
 ){
 
 seccionColor.style.display =
@@ -1646,14 +1639,11 @@ document.createElement(
 "button"
 );
 
-
 boton.type =
 "button";
 
-
 boton.className =
 "color";
-
 
 boton.textContent =
 color;
@@ -1713,7 +1703,9 @@ document.querySelector(
 );
 
 
-if(primerColor){
+if(
+primerColor
+){
 
 primerColor.classList.add(
 "activa"
@@ -1738,10 +1730,8 @@ function cargarTallasIndividual(){
 seccionTalla.style.display =
 "block";
 
-
 tallas.innerHTML =
 "";
-
 
 tallaSeleccionada =
 "";
@@ -1755,14 +1745,11 @@ document.createElement(
 "button"
 );
 
-
 boton.type =
 "button";
 
-
 boton.className =
 "talla";
-
 
 boton.textContent =
 talla;
@@ -1866,10 +1853,8 @@ document.createElement(
 "img"
 );
 
-
 mini.src =
 url;
-
 
 mini.className =
 "miniatura" +
@@ -1938,14 +1923,11 @@ async function cargarCarritoCompleto(){
 productoIndividual.style.display =
 "none";
 
-
 carritoCompleto.style.display =
 "block";
 
-
 estadoCarrito.style.display =
 "block";
-
 
 estadoCarrito.textContent =
 "CARGANDO CARRITO...";
@@ -1961,10 +1943,8 @@ encodeURIComponent(
 CLIENTE_ID
 ),
 {
-method:
-"GET",
-cache:
-"no-store"
+method:"GET",
+cache:"no-store"
 }
 );
 
@@ -1982,13 +1962,10 @@ if(
 carritoPago =
 [];
 
-
 estadoCarrito.textContent =
 "TU CARRITO ESTÁ VACÍO";
 
-
 actualizarTotales();
-
 
 return;
 
@@ -2212,11 +2189,9 @@ datosTarjeta.classList.remove(
 "activo"
 );
 
-
 datosYape.classList.remove(
 "activo"
 );
-
 
 metodo.classList.add(
 "activo"
@@ -2260,13 +2235,13 @@ botonPagar.textContent =
    LIMPIAR CARRITO
 ===================================================== */
 
-async function limpiarCarrito(){
+function limpiarCarrito(){
 
 if(
 !carritoPago.length
 ){
 
-return;
+return Promise.resolve();
 
 }
 
@@ -2304,12 +2279,9 @@ producto.talla || ""
 return fetch(
 url,
 {
-method:
-"GET",
-cache:
-"no-store",
-keepalive:
-true
+method:"GET",
+cache:"no-store",
+keepalive:true
 }
 );
 
@@ -2317,7 +2289,7 @@ true
 );
 
 
-await Promise.allSettled(
+return Promise.allSettled(
 peticiones
 );
 
@@ -2332,10 +2304,9 @@ botonPagar.addEventListener(
 "click",
 async function(){
 
-
-/* ===================================================
-   VALIDAR DATOS CLIENTE
-=================================================== */
+/* ============================================
+   DATOS CLIENTE
+============================================ */
 
 const nombre =
 document
@@ -2397,9 +2368,9 @@ return;
 }
 
 
-/* ===================================================
-   VALIDAR CARRITO
-=================================================== */
+/* ============================================
+   CARRITO
+============================================ */
 
 if(
 modoCarrito &&
@@ -2415,9 +2386,9 @@ return;
 }
 
 
-/* ===================================================
-   TALLA INDIVIDUAL
-=================================================== */
+/* ============================================
+   TALLA
+============================================ */
 
 if(
 !modoCarrito &&
@@ -2432,9 +2403,9 @@ return;
 }
 
 
-/* ===================================================
+/* ============================================
    MÉTODO
-=================================================== */
+============================================ */
 
 const metodoActivo =
 document.querySelector(
@@ -2457,9 +2428,9 @@ const metodo =
 metodoActivo.dataset.metodo;
 
 
-/* ===================================================
+/* ============================================
    YAPE
-=================================================== */
+============================================ */
 
 if(
 metodo ===
@@ -2488,9 +2459,9 @@ return;
 }
 
 
-/* ===================================================
+/* ============================================
    TARJETA
-=================================================== */
+============================================ */
 
 if(
 metodo ===
@@ -2551,15 +2522,17 @@ return;
 }
 
 
-/* ===================================================
-   CONSTRUIR PRODUCTOS
-=================================================== */
+/* ============================================
+   CONSTRUIR ITEMS
+============================================ */
 
 let items =
 [];
 
 
-if(modoCarrito){
+if(
+modoCarrito
+){
 
 items =
 carritoPago.map(
@@ -2570,10 +2543,13 @@ return{
 id:
 producto.id || "",
 
+name:
+producto.nombre || "",
+
 nombre:
 producto.nombre || "",
 
-precio:
+price:
 Number(
 producto.precio || 0
 ),
@@ -2581,16 +2557,37 @@ producto.precio || 0
 imagen:
 producto.imagen || "",
 
+image_url:
+producto.imagen || "",
+
 color:
 producto.color || "",
+
+size:
+producto.talla || "",
 
 talla:
 producto.talla || "",
 
+units:
+Number(
+producto.cantidad || 1
+),
+
 cantidad:
 Number(
 producto.cantidad || 1
+),
+
+subtotal:
+(
+Number(
+producto.precio || 0
+) *
+Number(
+producto.cantidad || 1
 )
+).toFixed(2)
 
 };
 
@@ -2608,10 +2605,13 @@ String(
 numeroProducto
 ),
 
+name:
+productoActual.nombre,
+
 nombre:
 productoActual.nombre,
 
-precio:
+price:
 Number(
 productoActual.precio
 ),
@@ -2619,14 +2619,28 @@ productoActual.precio
 imagen:
 imagenProducto.src,
 
+image_url:
+imagenProducto.src,
+
 color:
 colorSeleccionado,
+
+size:
+tallaSeleccionada,
 
 talla:
 tallaSeleccionada,
 
+units:
+1,
+
 cantidad:
-1
+1,
+
+subtotal:
+Number(
+productoActual.precio
+).toFixed(2)
 
 }
 
@@ -2635,22 +2649,9 @@ cantidad:
 }
 
 
-if(
-!items.length
-){
-
-alert(
-"NO HAY PRODUCTOS PARA COMPRAR."
-);
-
-return;
-
-}
-
-
-/* ===================================================
-   CALCULAR TOTAL
-=================================================== */
+/* ============================================
+   TOTAL
+============================================ */
 
 let total =
 0;
@@ -2665,203 +2666,24 @@ function(item){
 
 total +=
 Number(
-item.precio
+item.price
 ) *
 Number(
-item.cantidad
+item.units
 );
-
 
 totalItems +=
 Number(
-item.cantidad
+item.units
 );
 
 }
 );
 
 
-/* ===================================================
-   CREAR HTML DEL EMAIL
-=================================================== */
-
-function escaparHTML(
-texto
-){
-
-return String(
-texto || ""
-)
-
-.replace(
-/&/g,
-"&amp;"
-)
-
-.replace(
-/</g,
-"&lt;"
-)
-
-.replace(
-/>/g,
-"&gt;"
-)
-
-.replace(
-/"/g,
-"&quot;"
-)
-
-.replace(
-/'/g,
-"&#039;"
-);
-
-}
-
-
-let productosHTML =
-"";
-
-
-items.forEach(
-function(item){
-
-const cantidad =
-Number(
-item.cantidad || 1
-);
-
-
-const precio =
-Number(
-item.precio || 0
-);
-
-
-const subtotalItem =
-precio *
-cantidad;
-
-
-productosHTML += `
-
-<div style="
-border-bottom:1px solid #eeeeee;
-padding:20px 0;
-">
-
-<table
-width="100%"
-cellpadding="0"
-cellspacing="0"
-border="0"
->
-
-<tr>
-
-<td
-width="90"
-valign="top"
->
-
-<img
-src="${escaparHTML(item.imagen)}"
-alt="${escaparHTML(item.nombre)}"
-style="
-width:80px;
-height:100px;
-object-fit:contain;
-display:block;
-"
->
-
-</td>
-
-
-<td
-valign="top"
-style="
-padding-left:15px;
-"
->
-
-<div style="
-font-size:14px;
-font-weight:600;
-margin-bottom:10px;
-">
-
-${escaparHTML(item.nombre)}
-
-</div>
-
-
-<div style="
-font-size:11px;
-color:#666;
-line-height:1.9;
-">
-
-Color:
-${escaparHTML(item.color || "-")}
-
-<br>
-
-Talla:
-${escaparHTML(item.talla || "-")}
-
-<br>
-
-Cantidad:
-${cantidad}
-
-<br>
-
-Precio unitario:
-$ ${precio.toFixed(2)}
-
-<br>
-
-Subtotal:
-$ ${subtotalItem.toFixed(2)}
-
-</div>
-
-</td>
-
-
-<td
-width="80"
-valign="top"
-align="right"
-style="
-font-size:14px;
-font-weight:600;
-white-space:nowrap;
-"
->
-
-$ ${subtotalItem.toFixed(2)}
-
-</td>
-
-</tr>
-
-</table>
-
-</div>
-
-`;
-
-}
-);
-
-
-/* ===================================================
+/* ============================================
    FECHA
-=================================================== */
+============================================ */
 
 const fecha =
 new Date().toLocaleString(
@@ -2873,42 +2695,21 @@ timeStyle:"short"
 );
 
 
-/* ===================================================
-   MÉTODO DE PAGO
-=================================================== */
+/* ============================================
+   MÉTODO
+============================================ */
 
 const metodoPago =
-metodo ===
-"tarjeta"
+metodo === "tarjeta"
 ? "TARJETA"
 : "YAPE";
 
 
-/* ===================================================
-   BLOQUEAR
-=================================================== */
+/* ============================================
+   PREPARAR EMAIL
+============================================ */
 
-botonPagar.disabled =
-true;
-
-
-botonPagar.textContent =
-"PROCESANDO...";
-
-
-pantallaCarga.classList.add(
-"activa"
-);
-
-
-/* ===================================================
-   EMAILJS
-=================================================== */
-
-try{
-
-
-const templateParams = {
+const parametrosEmail = {
 
 name:
 nombre,
@@ -2920,7 +2721,7 @@ phone:
 telefono,
 
 products:
-productosHTML,
+items,
 
 total_items:
 String(
@@ -2937,55 +2738,30 @@ date:
 fecha,
 
 image:
-items[0].imagen || "",
+items[0].image_url || "",
 
 product:
-items[0].nombre || "",
+items[0].name || "",
 
 price:
 "$ " +
 Number(
-items[0].precio || 0
+items[0].price || 0
 ).toFixed(2),
 
 size:
-items[0].talla || ""
+items[0].size || ""
 
 };
 
 
-const respuesta =
-await emailjs.send(
+/* ============================================
+   MOSTRAR FINALIZADA INMEDIATAMENTE
+============================================ */
 
-"service_citeu13",
+botonPagar.disabled =
+true;
 
-"template_0lixsz2",
-
-templateParams
-
-);
-
-
-console.log(
-"EmailJS:",
-respuesta
-);
-
-
-/* ===================================================
-   VACIAR CARRITO
-=================================================== */
-
-if(modoCarrito){
-
-await limpiarCarrito();
-
-}
-
-
-/* ===================================================
-   MOSTRAR FINALIZADO
-=================================================== */
 
 pantallaCarga.classList.remove(
 "activa"
@@ -2997,31 +2773,65 @@ compraFinalizada.classList.add(
 );
 
 
-}catch(error){
+/* ============================================
+   EMAILJS EN SEGUNDO PLANO
+============================================ */
+
+emailjs.send(
+"service_citeu13",
+"template_0lixsz2",
+parametrosEmail
+)
+.then(
+function(respuesta){
+
+console.log(
+"COMPRA ENVIADA POR EMAILJS:",
+respuesta.status,
+respuesta.text
+);
+
+}
+)
+.catch(
+function(error){
 
 console.error(
 "ERROR EMAILJS:",
 error
 );
 
-
-pantallaCarga.classList.remove(
-"activa"
+}
 );
 
 
-botonPagar.disabled =
-false;
+/* ============================================
+   LIMPIAR CARRITO EN SEGUNDO PLANO
+============================================ */
 
+if(
+modoCarrito
+){
 
-botonPagar.textContent =
-metodo === "tarjeta"
-? "PAGAR CON TARJETA"
-: "PAGAR CON YAPE";
+limpiarCarrito()
+.then(
+function(){
 
+console.log(
+"CARRITO LIMPIADO"
+);
 
-alert(
-"NO SE PUDO ENVIAR EL CORREO DE CONFIRMACIÓN. REVISA LA CONFIGURACIÓN DE EMAILJS."
+}
+)
+.catch(
+function(error){
+
+console.error(
+"ERROR LIMPIANDO CARRITO:",
+error
+);
+
+}
 );
 
 }
