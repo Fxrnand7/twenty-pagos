@@ -52,7 +52,6 @@ align-items:center;
 gap:25px;
 border-bottom:1px solid #ddd;
 padding-bottom:30px;
-margin-bottom:30px;
 }
 
 .producto img{
@@ -78,84 +77,6 @@ margin-bottom:12px;
 font-size:15px;
 font-weight:400;
 }
-
-.detalle-individual{
-font-size:11px;
-color:#777;
-line-height:1.8;
-margin-top:10px;
-text-transform:uppercase;
-}
-
-
-/* =====================================================
-   CARRITO COMPLETO
-===================================================== */
-
-#carritoCompleto{
-display:none;
-}
-
-.item-carrito-pago{
-display:grid;
-grid-template-columns:105px minmax(0,1fr) auto;
-gap:20px;
-align-items:center;
-border-bottom:1px solid #ddd;
-padding-bottom:25px;
-margin-bottom:25px;
-}
-
-.item-carrito-pago img{
-width:105px;
-height:125px;
-object-fit:contain;
-background:#fff;
-}
-
-.item-info-pago{
-min-width:0;
-}
-
-.item-nombre-pago{
-font-size:14px;
-font-weight:500;
-letter-spacing:.5px;
-text-transform:uppercase;
-margin-bottom:10px;
-}
-
-.item-detalle-pago{
-font-size:10px;
-line-height:1.8;
-color:#777;
-text-transform:uppercase;
-}
-
-.item-precio-pago{
-font-size:12px;
-margin-top:10px;
-}
-
-.item-total-pago{
-font-size:14px;
-font-weight:500;
-white-space:nowrap;
-}
-
-.estado-carrito{
-font-size:11px;
-color:#777;
-text-align:center;
-padding:35px 0;
-letter-spacing:1px;
-text-transform:uppercase;
-}
-
-
-/* =====================================================
-   SECCIONES
-===================================================== */
 
 .seccion{
 margin-top:35px;
@@ -236,11 +157,6 @@ cursor:pointer;
 border:1px solid #111;
 }
 
-
-/* =====================================================
-   RESUMEN
-===================================================== */
-
 .resumen{
 margin-top:35px;
 padding-top:20px;
@@ -253,11 +169,6 @@ font-size:15px;
 .total{
 font-weight:500;
 }
-
-
-/* =====================================================
-   MÉTODOS
-===================================================== */
 
 .metodos{
 margin-top:35px;
@@ -316,11 +227,6 @@ background:#fff;
 display:block;
 }
 
-
-/* =====================================================
-   CAMPOS
-===================================================== */
-
 .campo{
 margin-bottom:15px;
 }
@@ -364,11 +270,6 @@ color:#666;
 margin-bottom:15px;
 }
 
-
-/* =====================================================
-   BOTÓN PAGAR
-===================================================== */
-
 .pagar{
 margin-top:30px;
 }
@@ -410,11 +311,6 @@ margin-top:12px;
 color:#777;
 font-size:10px;
 }
-
-
-/* =====================================================
-   CARGANDO
-===================================================== */
 
 .pantalla-carga{
 display:none;
@@ -462,11 +358,6 @@ transform:rotate(360deg);
 }
 
 }
-
-
-/* =====================================================
-   FINALIZADA
-===================================================== */
 
 .compra-finalizada{
 display:none;
@@ -521,11 +412,6 @@ font-weight:600;
 letter-spacing:4px;
 }
 
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
 @media(max-width:600px){
 
 .pago{
@@ -550,25 +436,10 @@ flex-direction:column;
 gap:0;
 }
 
-.item-carrito-pago{
-grid-template-columns:75px minmax(0,1fr);
-gap:12px;
-}
-
-.item-carrito-pago img{
-width:75px;
-height:100px;
-}
-
-.item-total-pago{
-grid-column:2;
-}
-
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -581,16 +452,6 @@ TWENTY
 <div class="titulo">
 Finalizar compra
 </div>
-
-
-<!-- =====================================================
-     PRODUCTO INDIVIDUAL
-===================================================== -->
-
-<div
-id="productoIndividual"
-style="display:none;"
->
 
 <div class="producto">
 
@@ -612,44 +473,10 @@ id="precioProducto"
 class="precio">
 </div>
 
-<div
-id="detalleProducto"
-class="detalle-individual">
 </div>
 
 </div>
 
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     CARRITO COMPLETO
-===================================================== -->
-
-<div
-id="carritoCompleto"
->
-
-<div
-id="estadoCarrito"
-class="estado-carrito"
->
-CARGANDO CARRITO...
-</div>
-
-<div
-id="listaCarritoPago"
->
-</div>
-
-</div>
-
-
-<!-- =====================================================
-     COLOR INDIVIDUAL
-===================================================== -->
 
 <div
 id="seccionColor"
@@ -674,15 +501,7 @@ class="galeria">
 </div>
 
 
-<!-- =====================================================
-     TALLA INDIVIDUAL
-===================================================== -->
-
-<div
-id="seccionTalla"
-class="seccion"
-style="display:none;"
->
+<div class="seccion">
 
 <div class="seccion-titulo">
 Selecciona tu talla
@@ -702,10 +521,6 @@ Selecciona una talla antes de continuar.
 </div>
 
 
-<!-- =====================================================
-     TOTAL
-===================================================== -->
-
 <div class="resumen">
 
 <span>
@@ -715,15 +530,10 @@ Total
 <span
 id="totalProducto"
 class="total">
-$ 0.00
 </span>
 
 </div>
 
-
-<!-- =====================================================
-     MÉTODO DE PAGO
-===================================================== -->
 
 <div class="seccion metodos">
 
@@ -867,10 +677,6 @@ placeholder="Ingresa tu código"
 </div>
 
 
-<!-- =====================================================
-     BOTÓN
-===================================================== -->
-
 <div class="pagar">
 
 <button
@@ -888,16 +694,12 @@ CONTINUAR
 
 <div class="nota">
 
-Selecciona tu método de pago y completa los datos antes de continuar.
+Selecciona tu talla, método de pago y completa los datos antes de continuar.
 
 </div>
 
 </div>
 
-
-<!-- =====================================================
-     PANTALLA DE CARGA
-===================================================== -->
 
 <div
 id="pantallaCarga"
@@ -912,10 +714,6 @@ Procesando compra...
 
 </div>
 
-
-<!-- =====================================================
-     COMPRA FINALIZADA
-===================================================== -->
 
 <div
 id="compraFinalizada"
@@ -941,22 +739,29 @@ TWENTY
 </div>
 
 
+<!-- =====================================================
+     EMAILJS
+===================================================== -->
+
+<script
+type="text/javascript"
+src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
 <script>
 
+emailjs.init({
+publicKey:
+"FdHYCIvlgbsKGhjYB"
+});
+
+</script>
+
+
+<script>
 
 /* =====================================================
-   GOOGLE APPS SCRIPT
-===================================================== */
-
-const API_URL =
-"https://script.google.com/macros/s/AKfycbzDKYnNefBpgGiIpjyvzu3kQx7bY2FTe_xioBfN-xk5VEZjmoKhSt2lRH5lTGqQz5vy/exec";
-
-const CLIENTE_ID =
-"twenty_demo";
-
-
-/* =====================================================
-   CATÁLOGO
+   PRODUCTOS
 ===================================================== */
 
 const productos = {
@@ -1250,287 +1055,151 @@ tallas:["S","M","L","XL"]
 
 
 /* =====================================================
-   URL
+   DETECTAR PRODUCTO
 ===================================================== */
 
-const parametros =
+const parametros=
 new URLSearchParams(
 window.location.search
 );
 
-const numeroProducto =
+let numeroProducto=
 parseInt(
 parametros.get("producto")
 );
 
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let modoCarrito =
+if(
 !numeroProducto ||
-!productos[numeroProducto];
+!productos[numeroProducto]
+){
+numeroProducto=1;
+}
 
-let productoActual =
-modoCarrito
-? null
-: productos[numeroProducto];
-
-let colorSeleccionado =
-"";
-
-let tallaSeleccionada =
-"";
-
-let carritoPago =
-[];
+const productoActual=
+productos[numeroProducto];
 
 
 /* =====================================================
    ELEMENTOS
 ===================================================== */
 
-const productoIndividual =
-document.getElementById(
-"productoIndividual"
-);
-
-const carritoCompleto =
-document.getElementById(
-"carritoCompleto"
-);
-
-const estadoCarrito =
-document.getElementById(
-"estadoCarrito"
-);
-
-const listaCarritoPago =
-document.getElementById(
-"listaCarritoPago"
-);
-
-const imagenProducto =
+const imagenProducto=
 document.getElementById(
 "imagenProducto"
 );
 
-const nombreProducto =
+const nombreProducto=
 document.getElementById(
 "nombreProducto"
 );
 
-const precioProducto =
+const precioProducto=
 document.getElementById(
 "precioProducto"
 );
 
-const detalleProducto =
-document.getElementById(
-"detalleProducto"
-);
-
-const totalProducto =
+const totalProducto=
 document.getElementById(
 "totalProducto"
 );
 
-const seccionColor =
-document.getElementById(
-"seccionColor"
-);
-
-const seccionTalla =
-document.getElementById(
-"seccionTalla"
-);
-
-const colores =
+const colores=
 document.getElementById(
 "colores"
 );
 
-const galeria =
+const seccionColor=
+document.getElementById(
+"seccionColor"
+);
+
+const galeria=
 document.getElementById(
 "galeria"
 );
 
-const tallas =
+const tallas=
 document.getElementById(
 "tallas"
 );
 
-const aviso =
+const aviso=
 document.getElementById(
 "aviso"
 );
 
-const datosTarjeta =
-document.getElementById(
-"datosTarjeta"
-);
-
-const datosYape =
-document.getElementById(
-"datosYape"
-);
-
-const botonPagar =
-document.getElementById(
-"botonPagar"
-);
-
-const pantallaCarga =
-document.getElementById(
-"pantallaCarga"
-);
-
-const compraFinalizada =
-document.getElementById(
-"compraFinalizada"
-);
+let colorSeleccionado="";
+let tallaSeleccionada="";
 
 
 /* =====================================================
-   INICIAR
+   CARGAR PRODUCTO
 ===================================================== */
 
-document.addEventListener(
-"DOMContentLoaded",
-function(){
+function cargarProducto(){
 
-if(modoCarrito){
-
-cargarCarritoCompleto();
-
-}else{
-
-cargarProductoIndividual();
-
-}
-
-}
-);
-
-
-/* =====================================================
-   CARGAR PRODUCTO INDIVIDUAL
-===================================================== */
-
-function cargarProductoIndividual(){
-
-productoIndividual.style.display =
-"block";
-
-carritoCompleto.style.display =
-"none";
-
-
-nombreProducto.textContent =
+nombreProducto.textContent=
 productoActual.nombre;
 
+precioProducto.textContent=
+"$ " +
+productoActual.precio.toFixed(2);
 
-precioProducto.textContent =
+totalProducto.textContent=
 "$ " +
 productoActual.precio.toFixed(2);
 
 
-totalProducto.textContent =
-"$ " +
-productoActual.precio.toFixed(2);
+/* COLORES */
 
-
-detalleProducto.textContent =
-"";
-
-
-cargarColoresIndividual();
-
-cargarTallasIndividual();
-
-}
-
-
-/* =====================================================
-   COLORES INDIVIDUAL
-===================================================== */
-
-function cargarColoresIndividual(){
-
-const nombresColores =
+const nombresColores=
 Object.keys(
 productoActual.colores
 );
 
-colores.innerHTML =
-"";
+colores.innerHTML="";
+galeria.innerHTML="";
 
-galeria.innerHTML =
-"";
+if(nombresColores.length>0){
 
-
-if(
-nombresColores.length === 0
-){
-
-seccionColor.style.display =
-"none";
-
-return;
-
-}
-
-
-seccionColor.style.display =
+seccionColor.style.display=
 "block";
 
-
 nombresColores.forEach(
-function(color){
+(color,index)=>{
 
-const boton =
+const boton=
 document.createElement(
 "button"
 );
 
-boton.type =
-"button";
+boton.type="button";
 
-boton.className =
-"color";
+boton.className="color";
 
-boton.textContent =
+boton.textContent=
 color;
-
 
 boton.addEventListener(
 "click",
-function(){
+()=>{
 
 document
 .querySelectorAll(
 ".color"
 )
-.forEach(
-function(x){
-
-x.classList.remove(
+.forEach(b=>{
+b.classList.remove(
 "activa"
 );
-
-}
-);
-
+});
 
 boton.classList.add(
 "activa"
 );
 
-
-colorSeleccionado =
+colorSeleccionado=
 color;
-
 
 mostrarImagenesColor(
 color
@@ -1539,7 +1208,6 @@ color
 }
 );
 
-
 colores.appendChild(
 boton
 );
@@ -1547,25 +1215,16 @@ boton
 }
 );
 
-
-colorSeleccionado =
+colorSeleccionado=
 nombresColores[0];
 
-
-const primerColor =
-document.querySelector(
+document
+.querySelector(
 ".color"
-);
-
-
-if(primerColor){
-
-primerColor.classList.add(
+)
+.classList.add(
 "activa"
 );
-
-}
-
 
 mostrarImagenesColor(
 colorSeleccionado
@@ -1574,74 +1233,51 @@ colorSeleccionado
 }
 
 
-/* =====================================================
-   TALLAS INDIVIDUAL
-===================================================== */
+/* TALLAS */
 
-function cargarTallasIndividual(){
-
-seccionTalla.style.display =
-"block";
-
-tallas.innerHTML =
-"";
-
-tallaSeleccionada =
-"";
-
+tallas.innerHTML="";
 
 productoActual.tallas.forEach(
-function(talla){
+(talla)=>{
 
-const boton =
+const boton=
 document.createElement(
 "button"
 );
 
-boton.type =
-"button";
+boton.type="button";
 
-boton.className =
-"talla";
+boton.className="talla";
 
-boton.textContent =
+boton.textContent=
 talla;
-
 
 boton.addEventListener(
 "click",
-function(){
+()=>{
 
 document
 .querySelectorAll(
 ".talla"
 )
-.forEach(
-function(x){
-
+.forEach(x=>{
 x.classList.remove(
 "activa"
 );
-
-}
-);
-
+});
 
 boton.classList.add(
 "activa"
 );
 
-
-tallaSeleccionada =
+tallaSeleccionada=
 talla;
 
-
-aviso.style.display =
+aviso.style.display=
 "none";
 
 }
 );
-
 
 tallas.appendChild(
 boton
@@ -1661,93 +1297,75 @@ function mostrarImagenesColor(
 color
 ){
 
-const imagenes =
+const imagenes=
 productoActual.colores[
 color
 ];
-
 
 if(
 !imagenes ||
 !imagenes.length
 ){
-
 return;
-
 }
 
-
-imagenProducto.src =
+imagenProducto.src=
 imagenes[0];
 
-
-imagenProducto.alt =
+imagenProducto.alt=
 productoActual.nombre;
 
+galeria.innerHTML="";
 
-galeria.innerHTML =
-"";
-
-
-if(
-imagenes.length > 1
-){
+if(imagenes.length>1){
 
 galeria.classList.add(
 "activa"
 );
 
-
 imagenes.forEach(
-function(url,index){
+(url,index)=>{
 
-const mini =
+const mini=
 document.createElement(
 "img"
 );
 
-mini.src =
-url;
+mini.src=url;
 
-mini.className =
+mini.className=
 "miniatura" +
 (
-index === 0
-? " activa"
-: ""
+index===0
+?
+" activa"
+:
+""
 );
-
 
 mini.addEventListener(
 "click",
-function(){
+()=>{
 
 document
 .querySelectorAll(
 ".miniatura"
 )
-.forEach(
-function(x){
-
+.forEach(x=>{
 x.classList.remove(
 "activa"
 );
-
-}
-);
-
+});
 
 mini.classList.add(
 "activa"
 );
 
-
-imagenProducto.src =
+imagenProducto.src=
 url;
 
 }
 );
-
 
 galeria.appendChild(
 mini
@@ -1768,223 +1386,56 @@ galeria.classList.remove(
 
 
 /* =====================================================
-   CARGAR CARRITO COMPLETO
+   INICIAR
 ===================================================== */
 
-async function cargarCarritoCompleto(){
-
-productoIndividual.style.display =
-"none";
-
-carritoCompleto.style.display =
-"block";
-
-estadoCarrito.textContent =
-"CARGANDO CARRITO...";
-
-
-try{
-
-const respuesta =
-await fetch(
-API_URL +
-"?clienteId=" +
-encodeURIComponent(
-CLIENTE_ID
-),
-{
-method:"GET",
-cache:"no-store"
-}
-);
-
-
-const datos =
-await respuesta.json();
-
-
-if(
-!datos.ok ||
-!datos.carrito ||
-!datos.carrito.length
-){
-
-carritoPago =
-[];
-
-estadoCarrito.textContent =
-"TU CARRITO ESTÁ VACÍO";
-
-totalProducto.textContent =
-"$ 0.00";
-
-return;
-
-}
-
-
-carritoPago =
-datos.carrito;
-
-
-estadoCarrito.style.display =
-"none";
-
-
-mostrarCarritoPago();
-
-
-}catch(error){
-
-console.error(
-error
-);
-
-estadoCarrito.textContent =
-"NO SE PUDO CARGAR EL CARRITO";
-
-}
-
-}
-
-
-/* =====================================================
-   MOSTRAR CARRITO
-===================================================== */
-
-function mostrarCarritoPago(){
-
-listaCarritoPago.innerHTML =
-"";
-
-
-let total =
-0;
-
-
-carritoPago.forEach(
-function(producto){
-
-const cantidad =
-Number(
-producto.cantidad || 1
-);
-
-
-const precio =
-Number(
-producto.precio || 0
-);
-
-
-const totalItem =
-precio *
-cantidad;
-
-
-total +=
-totalItem;
-
-
-const item =
-document.createElement(
-"div"
-);
-
-
-item.className =
-"item-carrito-pago";
-
-
-item.innerHTML =
-`
-<img
-src="${producto.imagen}"
-alt="${producto.nombre}"
->
-
-<div class="item-info-pago">
-
-<div class="item-nombre-pago">
-${producto.nombre}
-</div>
-
-<div class="item-detalle-pago">
-
-COLOR:
-${producto.color || "-"}
-
-<br>
-
-TALLA:
-${producto.talla || "-"}
-
-<br>
-
-CANTIDAD:
-${cantidad}
-
-</div>
-
-<div class="item-precio-pago">
-
-$ ${precio.toFixed(2)}
-
-</div>
-
-</div>
-
-<div class="item-total-pago">
-
-$ ${totalItem.toFixed(2)}
-
-</div>
-`;
-
-
-listaCarritoPago.appendChild(
-item
-);
-
-}
-);
-
-
-totalProducto.textContent =
-"$ " +
-total.toFixed(2);
-
-}
+cargarProducto();
 
 
 /* =====================================================
    MÉTODOS DE PAGO
 ===================================================== */
 
-const metodos =
+const metodos=
 document.querySelectorAll(
 ".metodo"
 );
 
+const datosTarjeta=
+document.getElementById(
+"datosTarjeta"
+);
 
-metodos.forEach(
-function(metodo){
+const datosYape=
+document.getElementById(
+"datosYape"
+);
 
-metodo.addEventListener(
+const botonPagar=
+document.getElementById(
+"botonPagar"
+);
+
+
+metodos.forEach(m=>{
+
+m.addEventListener(
 "click",
-function(){
+()=>{
 
-const tipo =
-metodo.dataset.metodo;
+const metodo=
+m.dataset.metodo;
 
+
+/* CERRAR SI YA ESTÁ ABIERTO */
 
 if(
-metodo.classList.contains(
+m.classList.contains(
 "activo"
 )
 ){
 
-metodo.classList.remove(
+m.classList.remove(
 "activo"
 );
 
@@ -1996,7 +1447,7 @@ datosYape.classList.remove(
 "activo"
 );
 
-botonPagar.textContent =
+botonPagar.textContent=
 "CONTINUAR";
 
 return;
@@ -2004,16 +1455,13 @@ return;
 }
 
 
-metodos.forEach(
-function(x){
+/* CERRAR LOS DOS */
 
+metodos.forEach(x=>{
 x.classList.remove(
 "activo"
 );
-
-}
-);
-
+});
 
 datosTarjeta.classList.remove(
 "activo"
@@ -2024,65 +1472,79 @@ datosYape.classList.remove(
 );
 
 
-metodo.classList.add(
-"activo"
-);
-
+/* TARJETA */
 
 if(
-tipo ===
-"tarjeta"
+metodo==="tarjeta"
 ){
+
+m.classList.add(
+"activo"
+);
 
 datosTarjeta.classList.add(
 "activo"
 );
 
-botonPagar.textContent =
+botonPagar.textContent=
 "PAGAR CON TARJETA";
 
 }
 
 
+/* YAPE */
+
 if(
-tipo ===
-"yape"
+metodo==="yape"
 ){
+
+m.classList.add(
+"activo"
+);
 
 datosYape.classList.add(
 "activo"
 );
 
-botonPagar.textContent =
+botonPagar.textContent=
 "PAGAR CON YAPE";
 
 }
 
-}
-);
+});
 
 });
 
 
 /* =====================================================
-   FINALIZAR
+   PANTALLAS
+===================================================== */
+
+const pantallaCarga=
+document.getElementById(
+"pantallaCarga"
+);
+
+const compraFinalizada=
+document.getElementById(
+"compraFinalizada"
+);
+
+
+/* =====================================================
+   PAGAR
 ===================================================== */
 
 botonPagar.addEventListener(
 "click",
-async function(){
+()=>{
 
 
-/* -----------------------------------------------------
-   TALLA SI ES COMPRA INDIVIDUAL
------------------------------------------------------ */
+/* TALLA */
 
-if(
-!modoCarrito &&
-!tallaSeleccionada
-){
+if(!tallaSeleccionada){
 
-aviso.style.display =
+aviso.style.display=
 "block";
 
 return;
@@ -2090,15 +1552,12 @@ return;
 }
 
 
-/* -----------------------------------------------------
-   MÉTODO
------------------------------------------------------ */
+/* MÉTODO */
 
-const metodoActivo =
+const metodoActivo=
 document.querySelector(
 ".metodo.activo"
 );
-
 
 if(!metodoActivo){
 
@@ -2110,82 +1569,43 @@ return;
 
 }
 
-
-const metodo =
+const metodo=
 metodoActivo.dataset.metodo;
 
 
-/* -----------------------------------------------------
-   YAPE
------------------------------------------------------ */
+/* TARJETA */
 
 if(
-metodo ===
-"yape"
+metodo==="tarjeta"
 ){
 
-const codigo =
-document
-.getElementById(
-"codigoYape"
-)
-.value
-.trim();
-
-
-if(!codigo){
-
-alert(
-"Ingresa el código de operación de Yape."
-);
-
-return;
-
-}
-
-}
-
-
-/* -----------------------------------------------------
-   TARJETA
------------------------------------------------------ */
-
-if(
-metodo ===
-"tarjeta"
-){
-
-const numero =
+const numero=
 document
 .getElementById(
 "numeroTarjeta"
 )
-.value
-.trim();
+.value.trim();
 
-const titular =
+const titular=
 document
 .getElementById(
 "titular"
 )
-.value
-.trim();
+.value.trim();
 
-const vencimiento =
+const vencimiento=
 document
 .getElementById(
 "vencimiento"
 )
-.value
-.trim();
+.value.trim();
 
-const cvv =
+const cvv=
 document
 .getElementById(
 "cvv"
 )
-.value
-.trim();
+.value.trim();
 
 
 if(
@@ -2206,135 +1626,35 @@ return;
 }
 
 
-/* -----------------------------------------------------
-   PRODUCTOS
------------------------------------------------------ */
-
-let items =
-[];
-
-
-if(modoCarrito){
-
-items =
-carritoPago.map(
-function(producto){
-
-return{
-
-id:
-producto.id || "",
-
-nombre:
-producto.nombre || "",
-
-precio:
-Number(
-producto.precio || 0
-),
-
-imagen:
-producto.imagen || "",
-
-color:
-producto.color || "",
-
-talla:
-producto.talla || "",
-
-cantidad:
-Number(
-producto.cantidad || 1
-)
-
-};
-
-}
-);
-
-}else{
-
-items = [
-
-{
-
-id:
-String(
-numeroProducto
-),
-
-nombre:
-productoActual.nombre,
-
-precio:
-Number(
-productoActual.precio
-),
-
-imagen:
-imagenProducto.src,
-
-color:
-colorSeleccionado,
-
-talla:
-tallaSeleccionada,
-
-cantidad:
-1
-
-}
-
-];
-
-}
-
-
-/* -----------------------------------------------------
-   VERIFICAR CARRITO
------------------------------------------------------ */
+/* YAPE */
 
 if(
-!items.length
+metodo==="yape"
 ){
 
+const codigo=
+document
+.getElementById(
+"codigoYape"
+)
+.value.trim();
+
+if(!codigo){
+
 alert(
-"NO HAY PRODUCTOS PARA COMPRAR."
+"Ingresa el código de operación de Yape."
 );
 
 return;
 
 }
 
-
-/* -----------------------------------------------------
-   TOTAL
------------------------------------------------------ */
-
-let total =
-0;
-
-
-items.forEach(
-function(item){
-
-total +=
-Number(
-item.precio
-) *
-Number(
-item.cantidad
-);
-
 }
-);
 
 
-/* -----------------------------------------------------
-   CARGANDO
------------------------------------------------------ */
+/* PROCESANDO */
 
-botonPagar.disabled =
+botonPagar.disabled=
 true;
 
 pantallaCarga.classList.add(
@@ -2342,198 +1662,22 @@ pantallaCarga.classList.add(
 );
 
 
-try{
-
-
-/* ---------------------------------------------------
-   ENVIAR COMPRA AL APPS SCRIPT
---------------------------------------------------- */
-
-const datosEnvio =
-new URLSearchParams();
-
-
-datosEnvio.append(
-"action",
-"finalizarCompra"
-);
-
-
-datosEnvio.append(
-"clienteId",
-CLIENTE_ID
-);
-
-
-datosEnvio.append(
-"metodoPago",
-metodo
-);
-
-
-datosEnvio.append(
-"total",
-total.toFixed(2)
-);
-
-
-datosEnvio.append(
-"items",
-JSON.stringify(
-items
-)
-);
-
-
-const respuesta =
-await fetch(
-API_URL,
-{
-method:
-"POST",
-
-headers:{
-"Content-Type":
-"application/x-www-form-urlencoded;charset=UTF-8"
-},
-
-body:
-datosEnvio.toString()
-}
-);
-
-
-const datos =
-await respuesta.json();
-
-
-if(
-!datos.ok
-){
-
-throw new Error(
-datos.mensaje ||
-"Error al finalizar compra."
-);
-
-}
-
-
-/* ---------------------------------------------------
-   VACIAR CARRITO
---------------------------------------------------- */
-
-if(
-modoCarrito
-){
-
-await limpiarCarrito();
-
-}
-
-
-/* ---------------------------------------------------
-   FINALIZAR
---------------------------------------------------- */
+setTimeout(
+()=>{
 
 pantallaCarga.classList.remove(
 "activa"
 );
-
 
 compraFinalizada.classList.add(
 "activa"
 );
 
-
-}catch(error){
-
-console.error(
-error
+},
+1500
 );
 
-
-pantallaCarga.classList.remove(
-"activa"
-);
-
-
-botonPagar.disabled =
-false;
-
-
-alert(
-"NO SE PUDO FINALIZAR LA COMPRA."
-);
-
-}
-
-}
-);
-
-
-/* =====================================================
-   LIMPIAR CARRITO
-===================================================== */
-
-async function limpiarCarrito(){
-
-if(
-!carritoPago.length
-){
-
-return;
-
-}
-
-
-const peticiones =
-carritoPago.map(
-function(producto){
-
-const url =
-API_URL +
-"?action=delete" +
-
-"&clienteId=" +
-encodeURIComponent(
-CLIENTE_ID
-) +
-
-"&productoId=" +
-encodeURIComponent(
-producto.id || ""
-) +
-
-"&color=" +
-encodeURIComponent(
-producto.color || ""
-) +
-
-"&talla=" +
-encodeURIComponent(
-producto.talla || ""
-);
-
-
-return fetch(
-url,
-{
-method:"GET",
-cache:"no-store",
-keepalive:true
-}
-);
-
-}
-);
-
-
-await Promise.allSettled(
-peticiones
-);
-
-}
+});
 
 </script>
 
