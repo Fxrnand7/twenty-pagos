@@ -5,7 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+>
 
 <title>TWENTY — Pago</title>
 
@@ -46,12 +49,18 @@ text-transform:uppercase;
 margin-bottom:35px;
 }
 
+
+/* =====================================================
+   PRODUCTO INDIVIDUAL
+===================================================== */
+
 .producto{
 display:flex;
 align-items:center;
 gap:25px;
 border-bottom:1px solid #ddd;
 padding-bottom:30px;
+margin-bottom:30px;
 }
 
 .producto img{
@@ -77,6 +86,86 @@ margin-bottom:12px;
 font-size:15px;
 font-weight:400;
 }
+
+.detalle-producto{
+font-size:11px;
+font-weight:300;
+color:#777;
+line-height:1.8;
+text-transform:uppercase;
+margin-top:10px;
+}
+
+
+/* =====================================================
+   CARRITO COMPLETO
+===================================================== */
+
+.lista-carrito-pago{
+width:100%;
+}
+
+.item-carrito-pago{
+display:grid;
+grid-template-columns:105px minmax(0,1fr) auto;
+gap:20px;
+align-items:center;
+border-bottom:1px solid #ddd;
+padding-bottom:25px;
+margin-bottom:25px;
+}
+
+.item-carrito-pago img{
+width:105px;
+height:125px;
+object-fit:contain;
+background:#fff;
+}
+
+.item-info-pago{
+min-width:0;
+}
+
+.item-nombre-pago{
+font-size:14px;
+font-weight:500;
+letter-spacing:.5px;
+text-transform:uppercase;
+margin-bottom:10px;
+}
+
+.item-detalle-pago{
+font-size:10px;
+line-height:1.8;
+color:#777;
+text-transform:uppercase;
+}
+
+.item-precio-pago{
+font-size:12px;
+margin-top:10px;
+}
+
+.item-total-pago{
+font-size:14px;
+font-weight:500;
+white-space:nowrap;
+}
+
+.estado-carrito{
+width:100%;
+text-align:center;
+padding:45px 10px;
+font-size:11px;
+color:#777;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+
+/* =====================================================
+   SECCIONES
+===================================================== */
 
 .seccion{
 margin-top:35px;
@@ -157,18 +246,75 @@ cursor:pointer;
 border:1px solid #111;
 }
 
+
+/* =====================================================
+   DATOS DEL CLIENTE
+===================================================== */
+
+.campo{
+margin-bottom:15px;
+}
+
+.campo label{
+display:block;
+font-size:10px;
+color:#777;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:7px;
+}
+
+.campo input{
+width:100%;
+height:45px;
+border:1px solid #ccc;
+padding:0 12px;
+font-family:'Montserrat',sans-serif;
+font-size:12px;
+outline:none;
+}
+
+.campo input:focus{
+border-color:#111;
+}
+
+
+/* =====================================================
+   RESUMEN
+===================================================== */
+
 .resumen{
 margin-top:35px;
 padding-top:20px;
 border-top:1px solid #ddd;
+font-size:15px;
+}
+
+.linea-resumen{
 display:flex;
 justify-content:space-between;
-font-size:15px;
+align-items:center;
+font-size:13px;
+font-weight:300;
+margin-bottom:18px;
+}
+
+.linea-resumen.total{
+border-top:1px solid #ddd;
+padding-top:20px;
+margin-top:20px;
+font-size:16px;
+font-weight:500;
 }
 
 .total{
 font-weight:500;
 }
+
+
+/* =====================================================
+   MÉTODOS DE PAGO
+===================================================== */
 
 .metodos{
 margin-top:35px;
@@ -227,33 +373,6 @@ background:#fff;
 display:block;
 }
 
-.campo{
-margin-bottom:15px;
-}
-
-.campo label{
-display:block;
-font-size:10px;
-color:#777;
-letter-spacing:1px;
-text-transform:uppercase;
-margin-bottom:7px;
-}
-
-.campo input{
-width:100%;
-height:45px;
-border:1px solid #ccc;
-padding:0 12px;
-font-family:'Montserrat',sans-serif;
-font-size:12px;
-outline:none;
-}
-
-.campo input:focus{
-border-color:#111;
-}
-
 .dos-campos{
 display:flex;
 gap:12px;
@@ -269,6 +388,11 @@ line-height:1.7;
 color:#666;
 margin-bottom:15px;
 }
+
+
+/* =====================================================
+   BOTÓN PAGAR
+===================================================== */
 
 .pagar{
 margin-top:30px;
@@ -311,6 +435,11 @@ margin-top:12px;
 color:#777;
 font-size:10px;
 }
+
+
+/* =====================================================
+   CARGANDO
+===================================================== */
 
 .pantalla-carga{
 display:none;
@@ -358,6 +487,11 @@ transform:rotate(360deg);
 }
 
 }
+
+
+/* =====================================================
+   COMPRA FINALIZADA
+===================================================== */
 
 .compra-finalizada{
 display:none;
@@ -412,6 +546,11 @@ font-weight:600;
 letter-spacing:4px;
 }
 
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
 @media(max-width:600px){
 
 .pago{
@@ -436,12 +575,28 @@ flex-direction:column;
 gap:0;
 }
 
+.item-carrito-pago{
+grid-template-columns:75px minmax(0,1fr);
+gap:12px;
+}
+
+.item-carrito-pago img{
+width:75px;
+height:100px;
+}
+
+.item-total-pago{
+grid-column:2;
+}
+
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <div class="pago">
 
@@ -452,6 +607,16 @@ TWENTY
 <div class="titulo">
 Finalizar compra
 </div>
+
+
+<!-- =====================================================
+     PRODUCTO INDIVIDUAL
+===================================================== -->
+
+<div
+id="productoIndividual"
+style="display:none;"
+>
 
 <div class="producto">
 
@@ -473,10 +638,46 @@ id="precioProducto"
 class="precio">
 </div>
 
+<div
+id="detalleProducto"
+class="detalle-producto">
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     CARRITO COMPLETO
+===================================================== -->
+
+<div
+id="carritoCompleto"
+style="display:none;"
+>
+
+<div
+id="estadoCarrito"
+class="estado-carrito"
+>
+CARGANDO CARRITO...
+</div>
+
+<div
+id="listaCarritoPago"
+class="lista-carrito-pago"
+>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COLOR
+===================================================== -->
 
 <div
 id="seccionColor"
@@ -501,7 +702,15 @@ class="galeria">
 </div>
 
 
-<div class="seccion">
+<!-- =====================================================
+     TALLA
+===================================================== -->
+
+<div
+id="seccionTalla"
+class="seccion"
+style="display:none;"
+>
 
 <div class="seccion-titulo">
 Selecciona tu talla
@@ -521,19 +730,133 @@ Selecciona una talla antes de continuar.
 </div>
 
 
+<!-- =====================================================
+     DATOS CLIENTE
+===================================================== -->
+
+<div class="seccion">
+
+<div class="seccion-titulo">
+Datos del cliente
+</div>
+
+
+<div class="campo">
+
+<label>
+Nombre completo
+</label>
+
+<input
+type="text"
+id="nombreCliente"
+placeholder="Nombre completo"
+autocomplete="name"
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>
+Correo electrónico
+</label>
+
+<input
+type="email"
+id="emailCliente"
+placeholder="correo@gmail.com"
+autocomplete="email"
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>
+Teléfono
+</label>
+
+<input
+type="tel"
+id="telefonoCliente"
+placeholder="Número de teléfono"
+autocomplete="tel"
+>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     RESUMEN
+===================================================== -->
+
 <div class="resumen">
 
+<div class="linea-resumen">
+
 <span>
-Total
+PRODUCTOS
 </span>
 
-<span
-id="totalProducto"
-class="total">
+<span id="cantidadTotalProductos">
+0
 </span>
 
 </div>
 
+
+<div class="linea-resumen">
+
+<span>
+SUBTOTAL
+</span>
+
+<span id="subtotal">
+$ 0.00
+</span>
+
+</div>
+
+
+<div class="linea-resumen">
+
+<span>
+ENVÍO
+</span>
+
+<span>
+GRATIS
+</span>
+
+</div>
+
+
+<div class="linea-resumen total">
+
+<span>
+TOTAL
+</span>
+
+<span
+id="totalProducto"
+class="total"
+>
+$ 0.00
+</span>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     MÉTODOS DE PAGO
+===================================================== -->
 
 <div class="seccion metodos">
 
@@ -677,6 +1000,10 @@ placeholder="Ingresa tu código"
 </div>
 
 
+<!-- =====================================================
+     BOTÓN
+===================================================== -->
+
 <div class="pagar">
 
 <button
@@ -694,12 +1021,17 @@ CONTINUAR
 
 <div class="nota">
 
-Selecciona tu talla, método de pago y completa los datos antes de continuar.
+Completa tus datos, selecciona un método de pago
+y continúa para finalizar tu compra.
 
 </div>
 
 </div>
 
+
+<!-- =====================================================
+     PANTALLA CARGA
+===================================================== -->
 
 <div
 id="pantallaCarga"
@@ -715,6 +1047,10 @@ Procesando compra...
 </div>
 
 
+<!-- =====================================================
+     COMPRA FINALIZADA
+===================================================== -->
+
 <div
 id="compraFinalizada"
 class="compra-finalizada"
@@ -729,7 +1065,7 @@ Compra finalizada
 </div>
 
 <div class="compra-texto">
-Gracias por comprar en TWENTY.
+Tu compra fue registrada correctamente.
 </div>
 
 <div class="compra-marca">
@@ -748,6 +1084,7 @@ type="text/javascript"
 src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
 
+
 <script>
 
 emailjs.init({
@@ -761,7 +1098,33 @@ publicKey:
 <script>
 
 /* =====================================================
-   PRODUCTOS
+   API DEL CARRITO
+===================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzDKYnNefBpgGiIpjyvzu3kQx7bY2FTe_xioBfN-xk5VEZjmoKhSt2lRH5lTGqQz5vy/exec";
+
+const CLIENTE_ID =
+"twenty_demo";
+
+
+/* =====================================================
+   PARÁMETRO
+===================================================== */
+
+const parametros =
+new URLSearchParams(
+window.location.search
+);
+
+const numeroProducto =
+parseInt(
+parametros.get("producto")
+);
+
+
+/* =====================================================
+   CATÁLOGO
 ===================================================== */
 
 const productos = {
@@ -769,7 +1132,6 @@ const productos = {
 1:{
 nombre:"POLO REGULAR FIT",
 precio:40,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/KC1QhRF/5.png"
@@ -784,7 +1146,6 @@ tallas:["S","M","L","XL"]
 2:{
 nombre:"POLO HIGH COTON",
 precio:40,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/gZrPB788/TMW-0285.webp"
@@ -801,7 +1162,6 @@ tallas:["S","M","L","XL"]
 3:{
 nombre:"POLO BOXY FIT",
 precio:40,
-genero:"HOMBRE",
 colores:{
 "BLANCO":[
 "https://i.ibb.co/MD45wYVY/2.png"
@@ -813,7 +1173,6 @@ tallas:["S","M","L","XL"]
 4:{
 nombre:"POLO OVERSIZE",
 precio:40,
-genero:"HOMBRE",
 colores:{
 "GRIS":[
 "https://i.ibb.co/C3bWZZZD/3.png"
@@ -825,7 +1184,6 @@ tallas:["S","M","L","XL"]
 5:{
 nombre:"POLO OVERSIZE",
 precio:40,
-genero:"HOMBRE",
 colores:{
 "CELESTE":[
 "https://i.ibb.co/8DmJG9jf/4.png"
@@ -837,7 +1195,6 @@ tallas:["S","M","L","XL"]
 6:{
 nombre:"BAGGY LAZER",
 precio:80,
-genero:"HOMBRE",
 colores:{
 "HIELO":[
 "https://i.ibb.co/Q7T6vkMd/335374c0-369d-42f4-944f-5516cd14dc32.png"
@@ -855,7 +1212,6 @@ tallas:["28","30","32","34"]
 7:{
 nombre:"BAGGY ANGEL",
 precio:99,
-genero:"HOMBRE",
 colores:{
 "CELESTE":[
 "https://i.ibb.co/5HMrshp/FWEAS.png"
@@ -867,7 +1223,6 @@ tallas:["28","30","32","34"]
 8:{
 nombre:"REGULAR FIT",
 precio:70,
-genero:"HOMBRE",
 colores:{
 "BEIGE":[
 "https://i.ibb.co/SDjkx5Wm/PANTALON-REGULAR-FIT-T20.png"
@@ -879,7 +1234,6 @@ tallas:["28","30","32","34"]
 9:{
 nombre:"SASTRE BAGGY",
 precio:80,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/0VF9GZL7/PANTALON-SASTRE-T20.png"
@@ -891,7 +1245,6 @@ tallas:["28","30","32","34"]
 10:{
 nombre:"MOM JEAN",
 precio:80,
-genero:"HOMBRE",
 colores:{
 "GRIS CLARO":[
 "https://i.ibb.co/s9gw4GpS/ADFS.png"
@@ -903,7 +1256,6 @@ tallas:["28","30","32","34"]
 11:{
 nombre:"FLARET JEAN FUEGO",
 precio:85,
-genero:"HOMBRE",
 colores:{
 "MAIZ":[
 "https://i.ibb.co/G4hJjnkq/1-FLARET-T20.png"
@@ -918,7 +1270,6 @@ tallas:["28","30","32","34"]
 12:{
 nombre:"FLARET JEAN LASER",
 precio:85,
-genero:"HOMBRE",
 colores:{
 "CARBON":[
 "https://i.ibb.co/ksMkq6LH/c4670570-6dd1-4544-b057-7d678482c3cc.png"
@@ -930,7 +1281,6 @@ tallas:["28","30","32","34"]
 13:{
 nombre:"HOODIE MOON REGULAR",
 precio:80,
-genero:"HOMBRE",
 colores:{
 "HUESO":[
 "https://i.ibb.co/WvxzLnyd/5f21673c-49ff-4a1c-afdb-f0110753d4d2.png"
@@ -942,7 +1292,6 @@ tallas:["S","M","L"]
 14:{
 nombre:"ZIP HOODIE DOUBLE ZIP",
 precio:85,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/qFC0yvNZ/df0f2b52-4a38-4521-a189-c199e3cb057f.png"
@@ -954,7 +1303,6 @@ tallas:["S","M","L"]
 15:{
 nombre:"HOODIE ESTRELLA BOXI",
 precio:85,
-genero:"HOMBRE",
 colores:{
 "BLANCO":[
 "https://i.ibb.co/C5MjSX41/840ac334-becf-4732-bd14-ce0fbae73ad6.png"
@@ -966,7 +1314,6 @@ tallas:["S","M","L"]
 16:{
 nombre:"HOODIE DUO BOXI FIT",
 precio:85,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/FkMbNc1W/ed6df9ba-a9f8-4680-a68b-36d7b59593cd.png"
@@ -978,7 +1325,6 @@ tallas:["S","M","L"]
 17:{
 nombre:"HOODIE ARAÑA BOXI FIT",
 precio:85,
-genero:"HOMBRE",
 colores:{
 "GRIS":[
 "https://i.ibb.co/Df8BHPSt/889dfb47-178b-4f2d-9199-3091820d7507.png"
@@ -990,7 +1336,6 @@ tallas:["S","M","L"]
 18:{
 nombre:"CAMISA BOXY FIT CAMUFLADO",
 precio:60,
-genero:"HOMBRE",
 colores:{
 "BEIGE":[
 "https://twentymoda.com/storage/images/item/TMW-0038.webp",
@@ -1003,7 +1348,6 @@ tallas:["S","M","L"]
 19:{
 nombre:"CAMISA BOXI FIT LINO",
 precio:60,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/MyqHfsM0/77e82dbf-550d-4e34-ad90-587b7e1ba0da.png"
@@ -1018,7 +1362,6 @@ tallas:["S","M"]
 20:{
 nombre:"JACKET AMELIO - BL/NG",
 precio:100,
-genero:"HOMBRE",
 colores:{
 "CAMUFLADO":[
 "https://i.ibb.co/27RQxxSF/61b2afa5-7be8-4e90-a8d8-1f5e6dc8b7ab.png"
@@ -1030,7 +1373,6 @@ tallas:["S","M","L"]
 21:{
 nombre:"JACKET CUERINA-NEGRA",
 precio:100,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/SD0XxKL6/2b342775-8828-40b9-b358-8b192c886bae.png"
@@ -1042,7 +1384,6 @@ tallas:["S","M","L"]
 22:{
 nombre:"HONESS-POLO BOXY FIT",
 precio:40,
-genero:"HOMBRE",
 colores:{
 "NEGRO":[
 "https://i.ibb.co/hRf2HmdW/1.png"
@@ -1055,151 +1396,296 @@ tallas:["S","M","L","XL"]
 
 
 /* =====================================================
-   DETECTAR PRODUCTO
+   VARIABLES
 ===================================================== */
 
-const parametros=
-new URLSearchParams(
-window.location.search
-);
-
-let numeroProducto=
-parseInt(
-parametros.get("producto")
-);
-
-if(
+let modoCarrito =
 !numeroProducto ||
-!productos[numeroProducto]
-){
-numeroProducto=1;
-}
+!productos[numeroProducto];
 
-const productoActual=
-productos[numeroProducto];
+let productoActual =
+modoCarrito
+? null
+: productos[numeroProducto];
+
+let colorSeleccionado =
+"";
+
+let tallaSeleccionada =
+"";
+
+let carritoPago =
+[];
 
 
 /* =====================================================
    ELEMENTOS
 ===================================================== */
 
-const imagenProducto=
+const productoIndividual =
+document.getElementById(
+"productoIndividual"
+);
+
+const carritoCompleto =
+document.getElementById(
+"carritoCompleto"
+);
+
+const estadoCarrito =
+document.getElementById(
+"estadoCarrito"
+);
+
+const listaCarritoPago =
+document.getElementById(
+"listaCarritoPago"
+);
+
+const imagenProducto =
 document.getElementById(
 "imagenProducto"
 );
 
-const nombreProducto=
+const nombreProducto =
 document.getElementById(
 "nombreProducto"
 );
 
-const precioProducto=
+const precioProducto =
 document.getElementById(
 "precioProducto"
 );
 
-const totalProducto=
+const detalleProducto =
+document.getElementById(
+"detalleProducto"
+);
+
+const totalProducto =
 document.getElementById(
 "totalProducto"
 );
 
-const colores=
+const cantidadTotalProductos =
 document.getElementById(
-"colores"
+"cantidadTotalProductos"
 );
 
-const seccionColor=
+const subtotal =
+document.getElementById(
+"subtotal"
+);
+
+const seccionColor =
 document.getElementById(
 "seccionColor"
 );
 
-const galeria=
+const seccionTalla =
+document.getElementById(
+"seccionTalla"
+);
+
+const colores =
+document.getElementById(
+"colores"
+);
+
+const galeria =
 document.getElementById(
 "galeria"
 );
 
-const tallas=
+const tallas =
 document.getElementById(
 "tallas"
 );
 
-const aviso=
+const aviso =
 document.getElementById(
 "aviso"
 );
 
-let colorSeleccionado="";
-let tallaSeleccionada="";
+const datosTarjeta =
+document.getElementById(
+"datosTarjeta"
+);
+
+const datosYape =
+document.getElementById(
+"datosYape"
+);
+
+const botonPagar =
+document.getElementById(
+"botonPagar"
+);
+
+const pantallaCarga =
+document.getElementById(
+"pantallaCarga"
+);
+
+const compraFinalizada =
+document.getElementById(
+"compraFinalizada"
+);
 
 
 /* =====================================================
-   CARGAR PRODUCTO
+   INICIAR
 ===================================================== */
 
-function cargarProducto(){
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
-nombreProducto.textContent=
+if(modoCarrito){
+
+cargarCarritoCompleto();
+
+}else{
+
+cargarProductoIndividual();
+
+}
+
+}
+);
+
+
+/* =====================================================
+   CARGAR PRODUCTO INDIVIDUAL
+===================================================== */
+
+function cargarProductoIndividual(){
+
+productoIndividual.style.display =
+"block";
+
+carritoCompleto.style.display =
+"none";
+
+
+nombreProducto.textContent =
 productoActual.nombre;
 
-precioProducto.textContent=
+
+precioProducto.textContent =
 "$ " +
 productoActual.precio.toFixed(2);
 
-totalProducto.textContent=
+
+subtotal.textContent =
 "$ " +
 productoActual.precio.toFixed(2);
 
 
-/* COLORES */
+totalProducto.textContent =
+"$ " +
+productoActual.precio.toFixed(2);
 
-const nombresColores=
+
+cantidadTotalProductos.textContent =
+"1";
+
+
+detalleProducto.textContent =
+"";
+
+
+cargarColoresIndividual();
+
+cargarTallasIndividual();
+
+}
+
+
+/* =====================================================
+   COLORES
+===================================================== */
+
+function cargarColoresIndividual(){
+
+const nombresColores =
 Object.keys(
 productoActual.colores
 );
 
-colores.innerHTML="";
-galeria.innerHTML="";
 
-if(nombresColores.length>0){
+colores.innerHTML =
+"";
 
-seccionColor.style.display=
+
+galeria.innerHTML =
+"";
+
+
+if(
+nombresColores.length === 0
+){
+
+seccionColor.style.display =
+"none";
+
+return;
+
+}
+
+
+seccionColor.style.display =
 "block";
 
-nombresColores.forEach(
-(color,index)=>{
 
-const boton=
+nombresColores.forEach(
+function(color){
+
+const boton =
 document.createElement(
 "button"
 );
 
-boton.type="button";
 
-boton.className="color";
+boton.type =
+"button";
 
-boton.textContent=
+
+boton.className =
+"color";
+
+
+boton.textContent =
 color;
+
 
 boton.addEventListener(
 "click",
-()=>{
+function(){
 
 document
 .querySelectorAll(
 ".color"
 )
-.forEach(b=>{
-b.classList.remove(
+.forEach(
+function(x){
+
+x.classList.remove(
 "activa"
 );
-});
+
+}
+);
+
 
 boton.classList.add(
 "activa"
 );
 
-colorSeleccionado=
+
+colorSeleccionado =
 color;
+
 
 mostrarImagenesColor(
 color
@@ -1208,6 +1694,7 @@ color
 }
 );
 
+
 colores.appendChild(
 boton
 );
@@ -1215,16 +1702,25 @@ boton
 }
 );
 
-colorSeleccionado=
+
+colorSeleccionado =
 nombresColores[0];
 
-document
-.querySelector(
+
+const primerColor =
+document.querySelector(
 ".color"
-)
-.classList.add(
+);
+
+
+if(primerColor){
+
+primerColor.classList.add(
 "activa"
 );
+
+}
+
 
 mostrarImagenesColor(
 colorSeleccionado
@@ -1233,51 +1729,79 @@ colorSeleccionado
 }
 
 
-/* TALLAS */
+/* =====================================================
+   TALLAS
+===================================================== */
 
-tallas.innerHTML="";
+function cargarTallasIndividual(){
+
+seccionTalla.style.display =
+"block";
+
+
+tallas.innerHTML =
+"";
+
+
+tallaSeleccionada =
+"";
+
 
 productoActual.tallas.forEach(
-(talla)=>{
+function(talla){
 
-const boton=
+const boton =
 document.createElement(
 "button"
 );
 
-boton.type="button";
 
-boton.className="talla";
+boton.type =
+"button";
 
-boton.textContent=
+
+boton.className =
+"talla";
+
+
+boton.textContent =
 talla;
+
 
 boton.addEventListener(
 "click",
-()=>{
+function(){
 
 document
 .querySelectorAll(
 ".talla"
 )
-.forEach(x=>{
+.forEach(
+function(x){
+
 x.classList.remove(
 "activa"
 );
-});
+
+}
+);
+
 
 boton.classList.add(
 "activa"
 );
 
-tallaSeleccionada=
+
+tallaSeleccionada =
 talla;
 
-aviso.style.display=
+
+aviso.style.display =
 "none";
 
 }
 );
+
 
 tallas.appendChild(
 boton
@@ -1297,75 +1821,95 @@ function mostrarImagenesColor(
 color
 ){
 
-const imagenes=
+const imagenes =
 productoActual.colores[
 color
 ];
+
 
 if(
 !imagenes ||
 !imagenes.length
 ){
+
 return;
+
 }
 
-imagenProducto.src=
+
+imagenProducto.src =
 imagenes[0];
 
-imagenProducto.alt=
+
+imagenProducto.alt =
 productoActual.nombre;
 
-galeria.innerHTML="";
 
-if(imagenes.length>1){
+galeria.innerHTML =
+"";
+
+
+if(
+imagenes.length > 1
+){
 
 galeria.classList.add(
 "activa"
 );
 
-imagenes.forEach(
-(url,index)=>{
 
-const mini=
+imagenes.forEach(
+function(url,index){
+
+const mini =
 document.createElement(
 "img"
 );
 
-mini.src=url;
 
-mini.className=
+mini.src =
+url;
+
+
+mini.className =
 "miniatura" +
 (
-index===0
-?
-" activa"
-:
-""
+index === 0
+? " activa"
+: ""
 );
+
 
 mini.addEventListener(
 "click",
-()=>{
+function(){
 
 document
 .querySelectorAll(
 ".miniatura"
 )
-.forEach(x=>{
+.forEach(
+function(x){
+
 x.classList.remove(
 "activa"
 );
-});
+
+}
+);
+
 
 mini.classList.add(
 "activa"
 );
 
-imagenProducto.src=
+
+imagenProducto.src =
 url;
 
 }
 );
+
 
 galeria.appendChild(
 mini
@@ -1386,56 +1930,254 @@ galeria.classList.remove(
 
 
 /* =====================================================
-   INICIAR
+   CARGAR CARRITO
 ===================================================== */
 
-cargarProducto();
+async function cargarCarritoCompleto(){
+
+productoIndividual.style.display =
+"none";
+
+
+carritoCompleto.style.display =
+"block";
+
+
+estadoCarrito.style.display =
+"block";
+
+
+estadoCarrito.textContent =
+"CARGANDO CARRITO...";
+
+
+try{
+
+const respuesta =
+await fetch(
+API_URL +
+"?clienteId=" +
+encodeURIComponent(
+CLIENTE_ID
+),
+{
+method:
+"GET",
+cache:
+"no-store"
+}
+);
+
+
+const datos =
+await respuesta.json();
+
+
+if(
+!datos.ok ||
+!datos.carrito ||
+!datos.carrito.length
+){
+
+carritoPago =
+[];
+
+
+estadoCarrito.textContent =
+"TU CARRITO ESTÁ VACÍO";
+
+
+actualizarTotales();
+
+
+return;
+
+}
+
+
+carritoPago =
+datos.carrito;
+
+
+estadoCarrito.style.display =
+"none";
+
+
+mostrarCarritoPago();
+
+
+}catch(error){
+
+console.error(
+error
+);
+
+
+estadoCarrito.textContent =
+"NO SE PUDO CARGAR EL CARRITO";
+
+}
+
+}
+
+
+/* =====================================================
+   MOSTRAR CARRITO
+===================================================== */
+
+function mostrarCarritoPago(){
+
+listaCarritoPago.innerHTML =
+"";
+
+
+let total =
+0;
+
+
+let totalItems =
+0;
+
+
+carritoPago.forEach(
+function(producto){
+
+const cantidad =
+Number(
+producto.cantidad || 1
+);
+
+
+const precio =
+Number(
+producto.precio || 0
+);
+
+
+const totalItem =
+precio *
+cantidad;
+
+
+total +=
+totalItem;
+
+
+totalItems +=
+cantidad;
+
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"item-carrito-pago";
+
+
+item.innerHTML =
+`
+
+<img
+src="${producto.imagen || ""}"
+alt="${producto.nombre || ""}"
+loading="lazy"
+>
+
+<div class="item-info-pago">
+
+<div class="item-nombre-pago">
+${producto.nombre || ""}
+</div>
+
+<div class="item-detalle-pago">
+
+COLOR:
+${producto.color || "-"}
+
+<br>
+
+TALLA:
+${producto.talla || "-"}
+
+<br>
+
+CANTIDAD:
+${cantidad}
+
+</div>
+
+<div class="item-precio-pago">
+
+$ ${precio.toFixed(2)}
+
+</div>
+
+</div>
+
+<div class="item-total-pago">
+
+$ ${totalItem.toFixed(2)}
+
+</div>
+
+`;
+
+
+listaCarritoPago.appendChild(
+item
+);
+
+}
+);
+
+
+cantidadTotalProductos.textContent =
+totalItems;
+
+
+subtotal.textContent =
+"$ " +
+total.toFixed(2);
+
+
+totalProducto.textContent =
+"$ " +
+total.toFixed(2);
+
+}
 
 
 /* =====================================================
    MÉTODOS DE PAGO
 ===================================================== */
 
-const metodos=
+const metodos =
 document.querySelectorAll(
 ".metodo"
 );
 
-const datosTarjeta=
-document.getElementById(
-"datosTarjeta"
-);
 
-const datosYape=
-document.getElementById(
-"datosYape"
-);
+metodos.forEach(
+function(metodo){
 
-const botonPagar=
-document.getElementById(
-"botonPagar"
-);
-
-
-metodos.forEach(m=>{
-
-m.addEventListener(
+metodo.addEventListener(
 "click",
-()=>{
+function(){
 
-const metodo=
-m.dataset.metodo;
+const tipo =
+metodo.dataset.metodo;
 
-
-/* CERRAR SI YA ESTÁ ABIERTO */
 
 if(
-m.classList.contains(
+metodo.classList.contains(
 "activo"
 )
 ){
 
-m.classList.remove(
+metodo.classList.remove(
 "activo"
 );
 
@@ -1447,7 +2189,7 @@ datosYape.classList.remove(
 "activo"
 );
 
-botonPagar.textContent=
+botonPagar.textContent =
 "CONTINUAR";
 
 return;
@@ -1455,96 +2197,234 @@ return;
 }
 
 
-/* CERRAR LOS DOS */
+metodos.forEach(
+function(x){
 
-metodos.forEach(x=>{
 x.classList.remove(
 "activo"
 );
-});
+
+}
+);
+
 
 datosTarjeta.classList.remove(
 "activo"
 );
+
 
 datosYape.classList.remove(
 "activo"
 );
 
 
-/* TARJETA */
-
-if(
-metodo==="tarjeta"
-){
-
-m.classList.add(
+metodo.classList.add(
 "activo"
 );
+
+
+if(
+tipo === "tarjeta"
+){
 
 datosTarjeta.classList.add(
 "activo"
 );
 
-botonPagar.textContent=
+botonPagar.textContent =
 "PAGAR CON TARJETA";
 
 }
 
 
-/* YAPE */
-
 if(
-metodo==="yape"
+tipo === "yape"
 ){
-
-m.classList.add(
-"activo"
-);
 
 datosYape.classList.add(
 "activo"
 );
 
-botonPagar.textContent=
+botonPagar.textContent =
 "PAGAR CON YAPE";
 
 }
 
-});
+}
+);
 
 });
 
 
 /* =====================================================
-   PANTALLAS
+   LIMPIAR CARRITO
 ===================================================== */
 
-const pantallaCarga=
-document.getElementById(
-"pantallaCarga"
+async function limpiarCarrito(){
+
+if(
+!carritoPago.length
+){
+
+return;
+
+}
+
+
+const peticiones =
+carritoPago.map(
+function(producto){
+
+const url =
+API_URL +
+
+"?action=delete" +
+
+"&clienteId=" +
+encodeURIComponent(
+CLIENTE_ID
+) +
+
+"&productoId=" +
+encodeURIComponent(
+producto.id || ""
+) +
+
+"&color=" +
+encodeURIComponent(
+producto.color || ""
+) +
+
+"&talla=" +
+encodeURIComponent(
+producto.talla || ""
 );
 
-const compraFinalizada=
-document.getElementById(
-"compraFinalizada"
+
+return fetch(
+url,
+{
+method:
+"GET",
+cache:
+"no-store",
+keepalive:
+true
+}
 );
+
+}
+);
+
+
+await Promise.allSettled(
+peticiones
+);
+
+}
 
 
 /* =====================================================
-   PAGAR
+   FINALIZAR COMPRA
 ===================================================== */
 
 botonPagar.addEventListener(
 "click",
-()=>{
+async function(){
 
 
-/* TALLA */
+/* ===================================================
+   VALIDAR DATOS CLIENTE
+=================================================== */
 
-if(!tallaSeleccionada){
+const nombre =
+document
+.getElementById(
+"nombreCliente"
+)
+.value
+.trim();
 
-aviso.style.display=
+
+const email =
+document
+.getElementById(
+"emailCliente"
+)
+.value
+.trim();
+
+
+const telefono =
+document
+.getElementById(
+"telefonoCliente"
+)
+.value
+.trim();
+
+
+if(!nombre){
+
+alert(
+"Ingresa tu nombre completo."
+);
+
+return;
+
+}
+
+
+if(!email){
+
+alert(
+"Ingresa tu correo electrónico."
+);
+
+return;
+
+}
+
+
+if(!telefono){
+
+alert(
+"Ingresa tu teléfono."
+);
+
+return;
+
+}
+
+
+/* ===================================================
+   VALIDAR CARRITO
+=================================================== */
+
+if(
+modoCarrito &&
+!carritoPago.length
+){
+
+alert(
+"NO HAY PRODUCTOS PARA COMPRAR."
+);
+
+return;
+
+}
+
+
+/* ===================================================
+   TALLA INDIVIDUAL
+=================================================== */
+
+if(
+!modoCarrito &&
+!tallaSeleccionada
+){
+
+aviso.style.display =
 "block";
 
 return;
@@ -1552,12 +2432,15 @@ return;
 }
 
 
-/* MÉTODO */
+/* ===================================================
+   MÉTODO
+=================================================== */
 
-const metodoActivo=
+const metodoActivo =
 document.querySelector(
 ".metodo.activo"
 );
+
 
 if(!metodoActivo){
 
@@ -1569,43 +2452,85 @@ return;
 
 }
 
-const metodo=
+
+const metodo =
 metodoActivo.dataset.metodo;
 
 
-/* TARJETA */
+/* ===================================================
+   YAPE
+=================================================== */
 
 if(
-metodo==="tarjeta"
+metodo ===
+"yape"
 ){
 
-const numero=
+const codigo =
+document
+.getElementById(
+"codigoYape"
+)
+.value
+.trim();
+
+
+if(!codigo){
+
+alert(
+"Ingresa el código de operación de Yape."
+);
+
+return;
+
+}
+
+}
+
+
+/* ===================================================
+   TARJETA
+=================================================== */
+
+if(
+metodo ===
+"tarjeta"
+){
+
+const numero =
 document
 .getElementById(
 "numeroTarjeta"
 )
-.value.trim();
+.value
+.trim();
 
-const titular=
+
+const titular =
 document
 .getElementById(
 "titular"
 )
-.value.trim();
+.value
+.trim();
 
-const vencimiento=
+
+const vencimiento =
 document
 .getElementById(
 "vencimiento"
 )
-.value.trim();
+.value
+.trim();
 
-const cvv=
+
+const cvv =
 document
 .getElementById(
 "cvv"
 )
-.value.trim();
+.value
+.trim();
 
 
 if(
@@ -1626,56 +2551,480 @@ return;
 }
 
 
-/* YAPE */
+/* ===================================================
+   CONSTRUIR PRODUCTOS
+=================================================== */
+
+let items =
+[];
+
+
+if(modoCarrito){
+
+items =
+carritoPago.map(
+function(producto){
+
+return{
+
+id:
+producto.id || "",
+
+nombre:
+producto.nombre || "",
+
+precio:
+Number(
+producto.precio || 0
+),
+
+imagen:
+producto.imagen || "",
+
+color:
+producto.color || "",
+
+talla:
+producto.talla || "",
+
+cantidad:
+Number(
+producto.cantidad || 1
+)
+
+};
+
+}
+);
+
+}else{
+
+items = [
+
+{
+
+id:
+String(
+numeroProducto
+),
+
+nombre:
+productoActual.nombre,
+
+precio:
+Number(
+productoActual.precio
+),
+
+imagen:
+imagenProducto.src,
+
+color:
+colorSeleccionado,
+
+talla:
+tallaSeleccionada,
+
+cantidad:
+1
+
+}
+
+];
+
+}
+
 
 if(
-metodo==="yape"
+!items.length
 ){
 
-const codigo=
-document
-.getElementById(
-"codigoYape"
-)
-.value.trim();
-
-if(!codigo){
-
 alert(
-"Ingresa el código de operación de Yape."
+"NO HAY PRODUCTOS PARA COMPRAR."
 );
 
 return;
 
 }
 
+
+/* ===================================================
+   CALCULAR TOTAL
+=================================================== */
+
+let total =
+0;
+
+
+let totalItems =
+0;
+
+
+items.forEach(
+function(item){
+
+total +=
+Number(
+item.precio
+) *
+Number(
+item.cantidad
+);
+
+
+totalItems +=
+Number(
+item.cantidad
+);
+
+}
+);
+
+
+/* ===================================================
+   CREAR HTML DEL EMAIL
+=================================================== */
+
+function escaparHTML(
+texto
+){
+
+return String(
+texto || ""
+)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
 }
 
 
-/* PROCESANDO */
+let productosHTML =
+"";
 
-botonPagar.disabled=
+
+items.forEach(
+function(item){
+
+const cantidad =
+Number(
+item.cantidad || 1
+);
+
+
+const precio =
+Number(
+item.precio || 0
+);
+
+
+const subtotalItem =
+precio *
+cantidad;
+
+
+productosHTML += `
+
+<div style="
+border-bottom:1px solid #eeeeee;
+padding:20px 0;
+">
+
+<table
+width="100%"
+cellpadding="0"
+cellspacing="0"
+border="0"
+>
+
+<tr>
+
+<td
+width="90"
+valign="top"
+>
+
+<img
+src="${escaparHTML(item.imagen)}"
+alt="${escaparHTML(item.nombre)}"
+style="
+width:80px;
+height:100px;
+object-fit:contain;
+display:block;
+"
+>
+
+</td>
+
+
+<td
+valign="top"
+style="
+padding-left:15px;
+"
+>
+
+<div style="
+font-size:14px;
+font-weight:600;
+margin-bottom:10px;
+">
+
+${escaparHTML(item.nombre)}
+
+</div>
+
+
+<div style="
+font-size:11px;
+color:#666;
+line-height:1.9;
+">
+
+Color:
+${escaparHTML(item.color || "-")}
+
+<br>
+
+Talla:
+${escaparHTML(item.talla || "-")}
+
+<br>
+
+Cantidad:
+${cantidad}
+
+<br>
+
+Precio unitario:
+$ ${precio.toFixed(2)}
+
+<br>
+
+Subtotal:
+$ ${subtotalItem.toFixed(2)}
+
+</div>
+
+</td>
+
+
+<td
+width="80"
+valign="top"
+align="right"
+style="
+font-size:14px;
+font-weight:600;
+white-space:nowrap;
+"
+>
+
+$ ${subtotalItem.toFixed(2)}
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+`;
+
+}
+);
+
+
+/* ===================================================
+   FECHA
+=================================================== */
+
+const fecha =
+new Date().toLocaleString(
+"es-PE",
+{
+dateStyle:"long",
+timeStyle:"short"
+}
+);
+
+
+/* ===================================================
+   MÉTODO DE PAGO
+=================================================== */
+
+const metodoPago =
+metodo ===
+"tarjeta"
+? "TARJETA"
+: "YAPE";
+
+
+/* ===================================================
+   BLOQUEAR
+=================================================== */
+
+botonPagar.disabled =
 true;
+
+
+botonPagar.textContent =
+"PROCESANDO...";
+
 
 pantallaCarga.classList.add(
 "activa"
 );
 
 
-setTimeout(
-()=>{
+/* ===================================================
+   EMAILJS
+=================================================== */
+
+try{
+
+
+const templateParams = {
+
+name:
+nombre,
+
+email:
+email,
+
+phone:
+telefono,
+
+products:
+productosHTML,
+
+total_items:
+String(
+totalItems
+),
+
+total:
+total.toFixed(2),
+
+payment_method:
+metodoPago,
+
+date:
+fecha,
+
+image:
+items[0].imagen || "",
+
+product:
+items[0].nombre || "",
+
+price:
+"$ " +
+Number(
+items[0].precio || 0
+).toFixed(2),
+
+size:
+items[0].talla || ""
+
+};
+
+
+const respuesta =
+await emailjs.send(
+
+"service_citeu13",
+
+"template_0lixsz2",
+
+templateParams
+
+);
+
+
+console.log(
+"EmailJS:",
+respuesta
+);
+
+
+/* ===================================================
+   VACIAR CARRITO
+=================================================== */
+
+if(modoCarrito){
+
+await limpiarCarrito();
+
+}
+
+
+/* ===================================================
+   MOSTRAR FINALIZADO
+=================================================== */
 
 pantallaCarga.classList.remove(
 "activa"
 );
 
+
 compraFinalizada.classList.add(
 "activa"
 );
 
-},
-1500
+
+}catch(error){
+
+console.error(
+"ERROR EMAILJS:",
+error
 );
+
+
+pantallaCarga.classList.remove(
+"activa"
+);
+
+
+botonPagar.disabled =
+false;
+
+
+botonPagar.textContent =
+metodo === "tarjeta"
+? "PAGAR CON TARJETA"
+: "PAGAR CON YAPE";
+
+
+alert(
+"NO SE PUDO ENVIAR EL CORREO DE CONFIRMACIÓN. REVISA LA CONFIGURACIÓN DE EMAILJS."
+);
+
+}
 
 });
 
