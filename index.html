@@ -1,1 +1,2541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<title>TWENTY — Pago</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+background:#fff;
+color:#111;
+font-family:'Montserrat',sans-serif;
+}
+
+.pago{
+width:100%;
+max-width:760px;
+margin:0 auto;
+padding:55px 25px 70px;
+}
+
+.logo{
+text-align:center;
+font-size:25px;
+font-weight:600;
+letter-spacing:5px;
+margin-bottom:55px;
+}
+
+.titulo{
+text-align:center;
+font-size:13px;
+font-weight:400;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:35px;
+}
+
+.producto{
+display:flex;
+align-items:center;
+gap:25px;
+border-bottom:1px solid #ddd;
+padding-bottom:30px;
+margin-bottom:30px;
+}
+
+.producto img{
+width:125px;
+height:150px;
+object-fit:contain;
+background:#fff;
+}
+
+.info{
+flex:1;
+}
+
+.nombre{
+font-size:16px;
+font-weight:500;
+letter-spacing:.5px;
+text-transform:uppercase;
+margin-bottom:12px;
+}
+
+.precio{
+font-size:15px;
+font-weight:400;
+}
+
+.detalle-individual{
+font-size:11px;
+color:#777;
+line-height:1.8;
+margin-top:10px;
+text-transform:uppercase;
+}
+
+
+/* =====================================================
+   CARRITO COMPLETO
+===================================================== */
+
+#carritoCompleto{
+display:none;
+}
+
+.item-carrito-pago{
+display:grid;
+grid-template-columns:105px minmax(0,1fr) auto;
+gap:20px;
+align-items:center;
+border-bottom:1px solid #ddd;
+padding-bottom:25px;
+margin-bottom:25px;
+}
+
+.item-carrito-pago img{
+width:105px;
+height:125px;
+object-fit:contain;
+background:#fff;
+}
+
+.item-info-pago{
+min-width:0;
+}
+
+.item-nombre-pago{
+font-size:14px;
+font-weight:500;
+letter-spacing:.5px;
+text-transform:uppercase;
+margin-bottom:10px;
+}
+
+.item-detalle-pago{
+font-size:10px;
+line-height:1.8;
+color:#777;
+text-transform:uppercase;
+}
+
+.item-precio-pago{
+font-size:12px;
+margin-top:10px;
+}
+
+.item-total-pago{
+font-size:14px;
+font-weight:500;
+white-space:nowrap;
+}
+
+.estado-carrito{
+font-size:11px;
+color:#777;
+text-align:center;
+padding:35px 0;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+
+/* =====================================================
+   SECCIONES
+===================================================== */
+
+.seccion{
+margin-top:35px;
+}
+
+.seccion-titulo{
+font-size:11px;
+color:#888;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:14px;
+}
+
+.tallas{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.talla{
+width:52px;
+height:44px;
+border:1px solid #333;
+background:#fff;
+font-family:'Montserrat',sans-serif;
+cursor:pointer;
+}
+
+.talla:hover,
+.talla.activa{
+background:#000;
+color:#fff;
+}
+
+.colores{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.color{
+min-width:75px;
+height:42px;
+padding:0 14px;
+border:1px solid #333;
+background:#fff;
+font-family:'Montserrat',sans-serif;
+font-size:11px;
+cursor:pointer;
+text-transform:uppercase;
+}
+
+.color:hover,
+.color.activa{
+background:#000;
+color:#fff;
+}
+
+.galeria{
+display:none;
+margin-top:15px;
+gap:8px;
+}
+
+.galeria.activa{
+display:flex;
+}
+
+.miniatura{
+width:58px;
+height:65px;
+object-fit:contain;
+border:1px solid #ddd;
+cursor:pointer;
+}
+
+.miniatura.activa{
+border:1px solid #111;
+}
+
+
+/* =====================================================
+   RESUMEN
+===================================================== */
+
+.resumen{
+margin-top:35px;
+padding-top:20px;
+border-top:1px solid #ddd;
+display:flex;
+justify-content:space-between;
+font-size:15px;
+}
+
+.total{
+font-weight:500;
+}
+
+
+/* =====================================================
+   MÉTODOS
+===================================================== */
+
+.metodos{
+margin-top:35px;
+}
+
+.metodo{
+width:100%;
+min-height:55px;
+border:1px solid #ddd;
+background:#fff;
+margin-bottom:10px;
+padding:0 18px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+font-family:'Montserrat',sans-serif;
+font-size:12px;
+cursor:pointer;
+}
+
+.metodo:hover{
+border-color:#111;
+}
+
+.metodo.activo{
+border-color:#111;
+}
+
+.metodo-nombre{
+letter-spacing:.5px;
+text-transform:uppercase;
+}
+
+.check{
+width:16px;
+height:16px;
+border:1px solid #555;
+border-radius:50%;
+}
+
+.metodo.activo .check{
+background:#000;
+box-shadow:inset 0 0 0 4px #fff;
+}
+
+.datos-pago{
+display:none;
+margin-top:5px;
+margin-bottom:15px;
+padding:20px;
+border:1px solid #ddd;
+background:#fff;
+}
+
+.datos-pago.activo{
+display:block;
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
+
+.campo{
+margin-bottom:15px;
+}
+
+.campo label{
+display:block;
+font-size:10px;
+color:#777;
+letter-spacing:1px;
+text-transform:uppercase;
+margin-bottom:7px;
+}
+
+.campo input{
+width:100%;
+height:45px;
+border:1px solid #ccc;
+padding:0 12px;
+font-family:'Montserrat',sans-serif;
+font-size:12px;
+outline:none;
+}
+
+.campo input:focus{
+border-color:#111;
+}
+
+.dos-campos{
+display:flex;
+gap:12px;
+}
+
+.dos-campos .campo{
+flex:1;
+}
+
+.info-yape{
+font-size:11px;
+line-height:1.7;
+color:#666;
+margin-bottom:15px;
+}
+
+
+/* =====================================================
+   BOTÓN PAGAR
+===================================================== */
+
+.pagar{
+margin-top:30px;
+}
+
+.boton-pagar{
+width:100%;
+height:50px;
+border:none;
+background:#000;
+color:#fff;
+font-family:'Montserrat',sans-serif;
+font-size:12px;
+letter-spacing:2px;
+text-transform:uppercase;
+cursor:pointer;
+transition:.2s;
+}
+
+.boton-pagar:hover{
+opacity:.85;
+}
+
+.boton-pagar:disabled{
+opacity:.7;
+cursor:not-allowed;
+}
+
+.nota{
+margin-top:18px;
+text-align:center;
+color:#888;
+font-size:10px;
+line-height:1.7;
+}
+
+.aviso{
+display:none;
+margin-top:12px;
+color:#777;
+font-size:10px;
+}
+
+
+/* =====================================================
+   CARGANDO
+===================================================== */
+
+.pantalla-carga{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(255,255,255,.97);
+z-index:9999;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+}
+
+.pantalla-carga.activa{
+display:flex;
+}
+
+.ruedita{
+width:38px;
+height:38px;
+border:3px solid #ddd;
+border-top:3px solid #111;
+border-radius:50%;
+animation:girar .8s linear infinite;
+margin-bottom:25px;
+}
+
+.texto-cargando{
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+@keyframes girar{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+
+/* =====================================================
+   FINALIZADA
+===================================================== */
+
+.compra-finalizada{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#fff;
+z-index:10000;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+}
+
+.compra-finalizada.activa{
+display:flex;
+}
+
+.icono-check{
+width:58px;
+height:58px;
+border:1px solid #111;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+margin-bottom:28px;
+}
+
+.compra-titulo{
+font-size:17px;
+font-weight:500;
+letter-spacing:3px;
+text-transform:uppercase;
+margin-bottom:12px;
+}
+
+.compra-texto{
+font-size:11px;
+color:#777;
+letter-spacing:.5px;
+}
+
+.compra-marca{
+margin-top:40px;
+font-size:12px;
+font-weight:600;
+letter-spacing:4px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:600px){
+
+.pago{
+padding:35px 18px 50px;
+}
+
+.producto{
+gap:15px;
+}
+
+.producto img{
+width:95px;
+height:120px;
+}
+
+.nombre{
+font-size:13px;
+}
+
+.dos-campos{
+flex-direction:column;
+gap:0;
+}
+
+.item-carrito-pago{
+grid-template-columns:75px minmax(0,1fr);
+gap:12px;
+}
+
+.item-carrito-pago img{
+width:75px;
+height:100px;
+}
+
+.item-total-pago{
+grid-column:2;
+}
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="pago">
+
+<div class="logo">
+TWENTY
+</div>
+
+<div class="titulo">
+Finalizar compra
+</div>
+
+
+<!-- =====================================================
+     PRODUCTO INDIVIDUAL
+===================================================== -->
+
+<div
+id="productoIndividual"
+style="display:none;"
+>
+
+<div class="producto">
+
+<img
+id="imagenProducto"
+src=""
+alt=""
+>
+
+<div class="info">
+
+<div
+id="nombreProducto"
+class="nombre">
+</div>
+
+<div
+id="precioProducto"
+class="precio">
+</div>
+
+<div
+id="detalleProducto"
+class="detalle-individual">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     CARRITO COMPLETO
+===================================================== -->
+
+<div
+id="carritoCompleto"
+>
+
+<div
+id="estadoCarrito"
+class="estado-carrito"
+>
+CARGANDO CARRITO...
+</div>
+
+<div
+id="listaCarritoPago"
+>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COLOR INDIVIDUAL
+===================================================== -->
+
+<div
+id="seccionColor"
+class="seccion"
+style="display:none;"
+>
+
+<div class="seccion-titulo">
+Selecciona tu color
+</div>
+
+<div
+id="colores"
+class="colores">
+</div>
+
+<div
+id="galeria"
+class="galeria">
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TALLA INDIVIDUAL
+===================================================== -->
+
+<div
+id="seccionTalla"
+class="seccion"
+style="display:none;"
+>
+
+<div class="seccion-titulo">
+Selecciona tu talla
+</div>
+
+<div
+id="tallas"
+class="tallas">
+</div>
+
+<div
+id="aviso"
+class="aviso">
+Selecciona una talla antes de continuar.
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     TOTAL
+===================================================== -->
+
+<div class="resumen">
+
+<span>
+Total
+</span>
+
+<span
+id="totalProducto"
+class="total">
+$ 0.00
+</span>
+
+</div>
+
+
+<!-- =====================================================
+     MÉTODO DE PAGO
+===================================================== -->
+
+<div class="seccion metodos">
+
+<div class="seccion-titulo">
+Método de pago
+</div>
+
+
+<button
+class="metodo"
+type="button"
+data-metodo="tarjeta"
+>
+
+<span class="metodo-nombre">
+Tarjeta
+</span>
+
+<span class="check"></span>
+
+</button>
+
+
+<div
+id="datosTarjeta"
+class="datos-pago"
+>
+
+<div class="campo">
+
+<label>
+Número de tarjeta
+</label>
+
+<input
+type="text"
+id="numeroTarjeta"
+placeholder="0000 0000 0000 0000"
+maxlength="19"
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>
+Nombre del titular
+</label>
+
+<input
+type="text"
+id="titular"
+placeholder="Nombre completo"
+>
+
+</div>
+
+
+<div class="dos-campos">
+
+<div class="campo">
+
+<label>
+Vencimiento
+</label>
+
+<input
+type="text"
+id="vencimiento"
+placeholder="MM/AA"
+maxlength="5"
+>
+
+</div>
+
+
+<div class="campo">
+
+<label>
+CVV
+</label>
+
+<input
+type="password"
+id="cvv"
+placeholder="123"
+maxlength="4"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="metodo"
+type="button"
+data-metodo="yape"
+>
+
+<span class="metodo-nombre">
+Yape
+</span>
+
+<span class="check"></span>
+
+</button>
+
+
+<div
+id="datosYape"
+class="datos-pago"
+>
+
+<div class="info-yape">
+
+Realiza el pago mediante Yape y luego ingresa
+el código de operación que aparece en tu comprobante.
+
+</div>
+
+<div class="campo">
+
+<label>
+Código de operación Yape
+</label>
+
+<input
+type="text"
+id="codigoYape"
+placeholder="Ingresa tu código"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     BOTÓN
+===================================================== -->
+
+<div class="pagar">
+
+<button
+id="botonPagar"
+class="boton-pagar"
+type="button"
+>
+
+CONTINUAR
+
+</button>
+
+</div>
+
+
+<div class="nota">
+
+Selecciona tu método de pago y completa los datos antes de continuar.
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PANTALLA DE CARGA
+===================================================== -->
+
+<div
+id="pantallaCarga"
+class="pantalla-carga"
+>
+
+<div class="ruedita"></div>
+
+<div class="texto-cargando">
+Procesando compra...
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COMPRA FINALIZADA
+===================================================== -->
+
+<div
+id="compraFinalizada"
+class="compra-finalizada"
+>
+
+<div class="icono-check">
+✓
+</div>
+
+<div class="compra-titulo">
+Compra finalizada
+</div>
+
+<div class="compra-texto">
+Gracias por comprar en TWENTY.
+</div>
+
+<div class="compra-marca">
+TWENTY
+</div>
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   GOOGLE APPS SCRIPT
+===================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzDKYnNefBpgGiIpjyvzu3kQx7bY2FTe_xioBfN-xk5VEZjmoKhSt2lRH5lTGqQz5vy/exec";
+
+const CLIENTE_ID =
+"twenty_demo";
+
+
+/* =====================================================
+   CATÁLOGO
+===================================================== */
+
+const productos = {
+
+1:{
+nombre:"POLO REGULAR FIT",
+precio:40,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/KC1QhRF/5.png"
+],
+"BLANCO":[
+"https://i.ibb.co/Nnn528Lm/SDA.png"
+]
+},
+tallas:["S","M","L","XL"]
+},
+
+2:{
+nombre:"POLO HIGH COTON",
+precio:40,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/gZrPB788/TMW-0285.webp"
+],
+"PERLA":[
+"https://i.ibb.co/PvL9HDCf/6.png",
+"https://i.ibb.co/vCz0xV17/e4c9c129-9db4-47bd-a889-dcbe65a6e610.png",
+"https://i.ibb.co/dJ5tJ1fq/TMW-0282-01.webp"
+]
+},
+tallas:["S","M","L","XL"]
+},
+
+3:{
+nombre:"POLO BOXY FIT",
+precio:40,
+genero:"HOMBRE",
+colores:{
+"BLANCO":[
+"https://i.ibb.co/MD45wYVY/2.png"
+]
+},
+tallas:["S","M","L","XL"]
+},
+
+4:{
+nombre:"POLO OVERSIZE",
+precio:40,
+genero:"HOMBRE",
+colores:{
+"GRIS":[
+"https://i.ibb.co/C3bWZZZD/3.png"
+]
+},
+tallas:["S","M","L","XL"]
+},
+
+5:{
+nombre:"POLO OVERSIZE",
+precio:40,
+genero:"HOMBRE",
+colores:{
+"CELESTE":[
+"https://i.ibb.co/8DmJG9jf/4.png"
+]
+},
+tallas:["S","M","L","XL"]
+},
+
+6:{
+nombre:"BAGGY LAZER",
+precio:80,
+genero:"HOMBRE",
+colores:{
+"HIELO":[
+"https://i.ibb.co/Q7T6vkMd/335374c0-369d-42f4-944f-5516cd14dc32.png"
+],
+"MAIZ COLOR":[
+"https://i.ibb.co/Qv0Bq1hz/743bd0f5-9986-4276-b650-677359ea6690.png"
+],
+"MAIZ CLARO":[
+"https://i.ibb.co/BVxzsmzx/40eaf563-25aa-4377-8a67-f43b1d0a1e1b.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+7:{
+nombre:"BAGGY ANGEL",
+precio:99,
+genero:"HOMBRE",
+colores:{
+"CELESTE":[
+"https://i.ibb.co/5HMrshp/FWEAS.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+8:{
+nombre:"REGULAR FIT",
+precio:70,
+genero:"HOMBRE",
+colores:{
+"BEIGE":[
+"https://i.ibb.co/SDjkx5Wm/PANTALON-REGULAR-FIT-T20.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+9:{
+nombre:"SASTRE BAGGY",
+precio:80,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/0VF9GZL7/PANTALON-SASTRE-T20.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+10:{
+nombre:"MOM JEAN",
+precio:80,
+genero:"HOMBRE",
+colores:{
+"GRIS CLARO":[
+"https://i.ibb.co/s9gw4GpS/ADFS.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+11:{
+nombre:"FLARET JEAN FUEGO",
+precio:85,
+genero:"HOMBRE",
+colores:{
+"MAIZ":[
+"https://i.ibb.co/G4hJjnkq/1-FLARET-T20.png"
+],
+"NEGRO":[
+"https://i.ibb.co/fGC5TVfb/HDFG.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+12:{
+nombre:"FLARET JEAN LASER",
+precio:85,
+genero:"HOMBRE",
+colores:{
+"CARBON":[
+"https://i.ibb.co/ksMkq6LH/c4670570-6dd1-4544-b057-7d678482c3cc.png"
+]
+},
+tallas:["28","30","32","34"]
+},
+
+13:{
+nombre:"HOODIE MOON REGULAR",
+precio:80,
+genero:"HOMBRE",
+colores:{
+"HUESO":[
+"https://i.ibb.co/WvxzLnyd/5f21673c-49ff-4a1c-afdb-f0110753d4d2.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+14:{
+nombre:"ZIP HOODIE DOUBLE ZIP",
+precio:85,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/qFC0yvNZ/df0f2b52-4a38-4521-a189-c199e3cb057f.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+15:{
+nombre:"HOODIE ESTRELLA BOXI",
+precio:85,
+genero:"HOMBRE",
+colores:{
+"BLANCO":[
+"https://i.ibb.co/C5MjSX41/840ac334-becf-4732-bd14-ce0fbae73ad6.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+16:{
+nombre:"HOODIE DUO BOXI FIT",
+precio:85,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/FkMbNc1W/ed6df9ba-a9f8-4680-a68b-36d7b59593cd.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+17:{
+nombre:"HOODIE ARAÑA BOXI FIT",
+precio:85,
+genero:"HOMBRE",
+colores:{
+"GRIS":[
+"https://i.ibb.co/Df8BHPSt/889dfb47-178b-4f2d-9199-3091820d7507.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+18:{
+nombre:"CAMISA BOXY FIT CAMUFLADO",
+precio:60,
+genero:"HOMBRE",
+colores:{
+"BEIGE":[
+"https://twentymoda.com/storage/images/item/TMW-0038.webp",
+"https://twentymoda.com/storage/images/item/TMW-0038-01.webp"
+]
+},
+tallas:["S","M","L"]
+},
+
+19:{
+nombre:"CAMISA BOXI FIT LINO",
+precio:60,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/MyqHfsM0/77e82dbf-550d-4e34-ad90-587b7e1ba0da.png"
+],
+"BLANCO":[
+"https://i.ibb.co/N2XT5QWD/9bdb5f8d-314a-4538-9d51-7cc78c377985.png"
+]
+},
+tallas:["S","M"]
+},
+
+20:{
+nombre:"JACKET AMELIO - BL/NG",
+precio:100,
+genero:"HOMBRE",
+colores:{
+"CAMUFLADO":[
+"https://i.ibb.co/27RQxxSF/61b2afa5-7be8-4e90-a8d8-1f5e6dc8b7ab.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+21:{
+nombre:"JACKET CUERINA-NEGRA",
+precio:100,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/SD0XxKL6/2b342775-8828-40b9-b358-8b192c886bae.png"
+]
+},
+tallas:["S","M","L"]
+},
+
+22:{
+nombre:"HONESS-POLO BOXY FIT",
+precio:40,
+genero:"HOMBRE",
+colores:{
+"NEGRO":[
+"https://i.ibb.co/hRf2HmdW/1.png"
+]
+},
+tallas:["S","M","L","XL"]
+}
+
+};
+
+
+/* =====================================================
+   URL
+===================================================== */
+
+const parametros =
+new URLSearchParams(
+window.location.search
+);
+
+const numeroProducto =
+parseInt(
+parametros.get("producto")
+);
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let modoCarrito =
+!numeroProducto ||
+!productos[numeroProducto];
+
+let productoActual =
+modoCarrito
+? null
+: productos[numeroProducto];
+
+let colorSeleccionado =
+"";
+
+let tallaSeleccionada =
+"";
+
+let carritoPago =
+[];
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const productoIndividual =
+document.getElementById(
+"productoIndividual"
+);
+
+const carritoCompleto =
+document.getElementById(
+"carritoCompleto"
+);
+
+const estadoCarrito =
+document.getElementById(
+"estadoCarrito"
+);
+
+const listaCarritoPago =
+document.getElementById(
+"listaCarritoPago"
+);
+
+const imagenProducto =
+document.getElementById(
+"imagenProducto"
+);
+
+const nombreProducto =
+document.getElementById(
+"nombreProducto"
+);
+
+const precioProducto =
+document.getElementById(
+"precioProducto"
+);
+
+const detalleProducto =
+document.getElementById(
+"detalleProducto"
+);
+
+const totalProducto =
+document.getElementById(
+"totalProducto"
+);
+
+const seccionColor =
+document.getElementById(
+"seccionColor"
+);
+
+const seccionTalla =
+document.getElementById(
+"seccionTalla"
+);
+
+const colores =
+document.getElementById(
+"colores"
+);
+
+const galeria =
+document.getElementById(
+"galeria"
+);
+
+const tallas =
+document.getElementById(
+"tallas"
+);
+
+const aviso =
+document.getElementById(
+"aviso"
+);
+
+const datosTarjeta =
+document.getElementById(
+"datosTarjeta"
+);
+
+const datosYape =
+document.getElementById(
+"datosYape"
+);
+
+const botonPagar =
+document.getElementById(
+"botonPagar"
+);
+
+const pantallaCarga =
+document.getElementById(
+"pantallaCarga"
+);
+
+const compraFinalizada =
+document.getElementById(
+"compraFinalizada"
+);
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+if(modoCarrito){
+
+cargarCarritoCompleto();
+
+}else{
+
+cargarProductoIndividual();
+
+}
+
+}
+);
+
+
+/* =====================================================
+   CARGAR PRODUCTO INDIVIDUAL
+===================================================== */
+
+function cargarProductoIndividual(){
+
+productoIndividual.style.display =
+"block";
+
+carritoCompleto.style.display =
+"none";
+
+
+nombreProducto.textContent =
+productoActual.nombre;
+
+
+precioProducto.textContent =
+"$ " +
+productoActual.precio.toFixed(2);
+
+
+totalProducto.textContent =
+"$ " +
+productoActual.precio.toFixed(2);
+
+
+detalleProducto.textContent =
+"";
+
+
+cargarColoresIndividual();
+
+cargarTallasIndividual();
+
+}
+
+
+/* =====================================================
+   COLORES INDIVIDUAL
+===================================================== */
+
+function cargarColoresIndividual(){
+
+const nombresColores =
+Object.keys(
+productoActual.colores
+);
+
+colores.innerHTML =
+"";
+
+galeria.innerHTML =
+"";
+
+
+if(
+nombresColores.length === 0
+){
+
+seccionColor.style.display =
+"none";
+
+return;
+
+}
+
+
+seccionColor.style.display =
+"block";
+
+
+nombresColores.forEach(
+function(color){
+
+const boton =
+document.createElement(
+"button"
+);
+
+boton.type =
+"button";
+
+boton.className =
+"color";
+
+boton.textContent =
+color;
+
+
+boton.addEventListener(
+"click",
+function(){
+
+document
+.querySelectorAll(
+".color"
+)
+.forEach(
+function(x){
+
+x.classList.remove(
+"activa"
+);
+
+}
+);
+
+
+boton.classList.add(
+"activa"
+);
+
+
+colorSeleccionado =
+color;
+
+
+mostrarImagenesColor(
+color
+);
+
+}
+);
+
+
+colores.appendChild(
+boton
+);
+
+}
+);
+
+
+colorSeleccionado =
+nombresColores[0];
+
+
+const primerColor =
+document.querySelector(
+".color"
+);
+
+
+if(primerColor){
+
+primerColor.classList.add(
+"activa"
+);
+
+}
+
+
+mostrarImagenesColor(
+colorSeleccionado
+);
+
+}
+
+
+/* =====================================================
+   TALLAS INDIVIDUAL
+===================================================== */
+
+function cargarTallasIndividual(){
+
+seccionTalla.style.display =
+"block";
+
+tallas.innerHTML =
+"";
+
+tallaSeleccionada =
+"";
+
+
+productoActual.tallas.forEach(
+function(talla){
+
+const boton =
+document.createElement(
+"button"
+);
+
+boton.type =
+"button";
+
+boton.className =
+"talla";
+
+boton.textContent =
+talla;
+
+
+boton.addEventListener(
+"click",
+function(){
+
+document
+.querySelectorAll(
+".talla"
+)
+.forEach(
+function(x){
+
+x.classList.remove(
+"activa"
+);
+
+}
+);
+
+
+boton.classList.add(
+"activa"
+);
+
+
+tallaSeleccionada =
+talla;
+
+
+aviso.style.display =
+"none";
+
+}
+);
+
+
+tallas.appendChild(
+boton
+);
+
+}
+);
+
+}
+
+
+/* =====================================================
+   IMÁGENES
+===================================================== */
+
+function mostrarImagenesColor(
+color
+){
+
+const imagenes =
+productoActual.colores[
+color
+];
+
+
+if(
+!imagenes ||
+!imagenes.length
+){
+
+return;
+
+}
+
+
+imagenProducto.src =
+imagenes[0];
+
+
+imagenProducto.alt =
+productoActual.nombre;
+
+
+galeria.innerHTML =
+"";
+
+
+if(
+imagenes.length > 1
+){
+
+galeria.classList.add(
+"activa"
+);
+
+
+imagenes.forEach(
+function(url,index){
+
+const mini =
+document.createElement(
+"img"
+);
+
+mini.src =
+url;
+
+mini.className =
+"miniatura" +
+(
+index === 0
+? " activa"
+: ""
+);
+
+
+mini.addEventListener(
+"click",
+function(){
+
+document
+.querySelectorAll(
+".miniatura"
+)
+.forEach(
+function(x){
+
+x.classList.remove(
+"activa"
+);
+
+}
+);
+
+
+mini.classList.add(
+"activa"
+);
+
+
+imagenProducto.src =
+url;
+
+}
+);
+
+
+galeria.appendChild(
+mini
+);
+
+}
+);
+
+}else{
+
+galeria.classList.remove(
+"activa"
+);
+
+}
+
+}
+
+
+/* =====================================================
+   CARGAR CARRITO COMPLETO
+===================================================== */
+
+async function cargarCarritoCompleto(){
+
+productoIndividual.style.display =
+"none";
+
+carritoCompleto.style.display =
+"block";
+
+estadoCarrito.textContent =
+"CARGANDO CARRITO...";
+
+
+try{
+
+const respuesta =
+await fetch(
+API_URL +
+"?clienteId=" +
+encodeURIComponent(
+CLIENTE_ID
+),
+{
+method:"GET",
+cache:"no-store"
+}
+);
+
+
+const datos =
+await respuesta.json();
+
+
+if(
+!datos.ok ||
+!datos.carrito ||
+!datos.carrito.length
+){
+
+carritoPago =
+[];
+
+estadoCarrito.textContent =
+"TU CARRITO ESTÁ VACÍO";
+
+totalProducto.textContent =
+"$ 0.00";
+
+return;
+
+}
+
+
+carritoPago =
+datos.carrito;
+
+
+estadoCarrito.style.display =
+"none";
+
+
+mostrarCarritoPago();
+
+
+}catch(error){
+
+console.error(
+error
+);
+
+estadoCarrito.textContent =
+"NO SE PUDO CARGAR EL CARRITO";
+
+}
+
+}
+
+
+/* =====================================================
+   MOSTRAR CARRITO
+===================================================== */
+
+function mostrarCarritoPago(){
+
+listaCarritoPago.innerHTML =
+"";
+
+
+let total =
+0;
+
+
+carritoPago.forEach(
+function(producto){
+
+const cantidad =
+Number(
+producto.cantidad || 1
+);
+
+
+const precio =
+Number(
+producto.precio || 0
+);
+
+
+const totalItem =
+precio *
+cantidad;
+
+
+total +=
+totalItem;
+
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"item-carrito-pago";
+
+
+item.innerHTML =
+`
+<img
+src="${producto.imagen}"
+alt="${producto.nombre}"
+>
+
+<div class="item-info-pago">
+
+<div class="item-nombre-pago">
+${producto.nombre}
+</div>
+
+<div class="item-detalle-pago">
+
+COLOR:
+${producto.color || "-"}
+
+<br>
+
+TALLA:
+${producto.talla || "-"}
+
+<br>
+
+CANTIDAD:
+${cantidad}
+
+</div>
+
+<div class="item-precio-pago">
+
+$ ${precio.toFixed(2)}
+
+</div>
+
+</div>
+
+<div class="item-total-pago">
+
+$ ${totalItem.toFixed(2)}
+
+</div>
+`;
+
+
+listaCarritoPago.appendChild(
+item
+);
+
+}
+);
+
+
+totalProducto.textContent =
+"$ " +
+total.toFixed(2);
+
+}
+
+
+/* =====================================================
+   MÉTODOS DE PAGO
+===================================================== */
+
+const metodos =
+document.querySelectorAll(
+".metodo"
+);
+
+
+metodos.forEach(
+function(metodo){
+
+metodo.addEventListener(
+"click",
+function(){
+
+const tipo =
+metodo.dataset.metodo;
+
+
+if(
+metodo.classList.contains(
+"activo"
+)
+){
+
+metodo.classList.remove(
+"activo"
+);
+
+datosTarjeta.classList.remove(
+"activo"
+);
+
+datosYape.classList.remove(
+"activo"
+);
+
+botonPagar.textContent =
+"CONTINUAR";
+
+return;
+
+}
+
+
+metodos.forEach(
+function(x){
+
+x.classList.remove(
+"activo"
+);
+
+}
+);
+
+
+datosTarjeta.classList.remove(
+"activo"
+);
+
+datosYape.classList.remove(
+"activo"
+);
+
+
+metodo.classList.add(
+"activo"
+);
+
+
+if(
+tipo ===
+"tarjeta"
+){
+
+datosTarjeta.classList.add(
+"activo"
+);
+
+botonPagar.textContent =
+"PAGAR CON TARJETA";
+
+}
+
+
+if(
+tipo ===
+"yape"
+){
+
+datosYape.classList.add(
+"activo"
+);
+
+botonPagar.textContent =
+"PAGAR CON YAPE";
+
+}
+
+}
+);
+
+});
+
+
+/* =====================================================
+   FINALIZAR
+===================================================== */
+
+botonPagar.addEventListener(
+"click",
+async function(){
+
+
+/* -----------------------------------------------------
+   TALLA SI ES COMPRA INDIVIDUAL
+----------------------------------------------------- */
+
+if(
+!modoCarrito &&
+!tallaSeleccionada
+){
+
+aviso.style.display =
+"block";
+
+return;
+
+}
+
+
+/* -----------------------------------------------------
+   MÉTODO
+----------------------------------------------------- */
+
+const metodoActivo =
+document.querySelector(
+".metodo.activo"
+);
+
+
+if(!metodoActivo){
+
+alert(
+"Selecciona un método de pago."
+);
+
+return;
+
+}
+
+
+const metodo =
+metodoActivo.dataset.metodo;
+
+
+/* -----------------------------------------------------
+   YAPE
+----------------------------------------------------- */
+
+if(
+metodo ===
+"yape"
+){
+
+const codigo =
+document
+.getElementById(
+"codigoYape"
+)
+.value
+.trim();
+
+
+if(!codigo){
+
+alert(
+"Ingresa el código de operación de Yape."
+);
+
+return;
+
+}
+
+}
+
+
+/* -----------------------------------------------------
+   TARJETA
+----------------------------------------------------- */
+
+if(
+metodo ===
+"tarjeta"
+){
+
+const numero =
+document
+.getElementById(
+"numeroTarjeta"
+)
+.value
+.trim();
+
+const titular =
+document
+.getElementById(
+"titular"
+)
+.value
+.trim();
+
+const vencimiento =
+document
+.getElementById(
+"vencimiento"
+)
+.value
+.trim();
+
+const cvv =
+document
+.getElementById(
+"cvv"
+)
+.value
+.trim();
+
+
+if(
+!numero ||
+!titular ||
+!vencimiento ||
+!cvv
+){
+
+alert(
+"Completa todos los datos de tu tarjeta antes de continuar."
+);
+
+return;
+
+}
+
+}
+
+
+/* -----------------------------------------------------
+   PRODUCTOS
+----------------------------------------------------- */
+
+let items =
+[];
+
+
+if(modoCarrito){
+
+items =
+carritoPago.map(
+function(producto){
+
+return{
+
+id:
+producto.id || "",
+
+nombre:
+producto.nombre || "",
+
+precio:
+Number(
+producto.precio || 0
+),
+
+imagen:
+producto.imagen || "",
+
+color:
+producto.color || "",
+
+talla:
+producto.talla || "",
+
+cantidad:
+Number(
+producto.cantidad || 1
+)
+
+};
+
+}
+);
+
+}else{
+
+items = [
+
+{
+
+id:
+String(
+numeroProducto
+),
+
+nombre:
+productoActual.nombre,
+
+precio:
+Number(
+productoActual.precio
+),
+
+imagen:
+imagenProducto.src,
+
+color:
+colorSeleccionado,
+
+talla:
+tallaSeleccionada,
+
+cantidad:
+1
+
+}
+
+];
+
+}
+
+
+/* -----------------------------------------------------
+   VERIFICAR CARRITO
+----------------------------------------------------- */
+
+if(
+!items.length
+){
+
+alert(
+"NO HAY PRODUCTOS PARA COMPRAR."
+);
+
+return;
+
+}
+
+
+/* -----------------------------------------------------
+   TOTAL
+----------------------------------------------------- */
+
+let total =
+0;
+
+
+items.forEach(
+function(item){
+
+total +=
+Number(
+item.precio
+) *
+Number(
+item.cantidad
+);
+
+}
+);
+
+
+/* -----------------------------------------------------
+   CARGANDO
+----------------------------------------------------- */
+
+botonPagar.disabled =
+true;
+
+pantallaCarga.classList.add(
+"activa"
+);
+
+
+try{
+
+
+/* ---------------------------------------------------
+   ENVIAR COMPRA AL APPS SCRIPT
+--------------------------------------------------- */
+
+const datosEnvio =
+new URLSearchParams();
+
+
+datosEnvio.append(
+"action",
+"finalizarCompra"
+);
+
+
+datosEnvio.append(
+"clienteId",
+CLIENTE_ID
+);
+
+
+datosEnvio.append(
+"metodoPago",
+metodo
+);
+
+
+datosEnvio.append(
+"total",
+total.toFixed(2)
+);
+
+
+datosEnvio.append(
+"items",
+JSON.stringify(
+items
+)
+);
+
+
+const respuesta =
+await fetch(
+API_URL,
+{
+method:
+"POST",
+
+headers:{
+"Content-Type":
+"application/x-www-form-urlencoded;charset=UTF-8"
+},
+
+body:
+datosEnvio.toString()
+}
+);
+
+
+const datos =
+await respuesta.json();
+
+
+if(
+!datos.ok
+){
+
+throw new Error(
+datos.mensaje ||
+"Error al finalizar compra."
+);
+
+}
+
+
+/* ---------------------------------------------------
+   VACIAR CARRITO
+--------------------------------------------------- */
+
+if(
+modoCarrito
+){
+
+await limpiarCarrito();
+
+}
+
+
+/* ---------------------------------------------------
+   FINALIZAR
+--------------------------------------------------- */
+
+pantallaCarga.classList.remove(
+"activa"
+);
+
+
+compraFinalizada.classList.add(
+"activa"
+);
+
+
+}catch(error){
+
+console.error(
+error
+);
+
+
+pantallaCarga.classList.remove(
+"activa"
+);
+
+
+botonPagar.disabled =
+false;
+
+
+alert(
+"NO SE PUDO FINALIZAR LA COMPRA."
+);
+
+}
+
+}
+);
+
+
+/* =====================================================
+   LIMPIAR CARRITO
+===================================================== */
+
+async function limpiarCarrito(){
+
+if(
+!carritoPago.length
+){
+
+return;
+
+}
+
+
+const peticiones =
+carritoPago.map(
+function(producto){
+
+const url =
+API_URL +
+"?action=delete" +
+
+"&clienteId=" +
+encodeURIComponent(
+CLIENTE_ID
+) +
+
+"&productoId=" +
+encodeURIComponent(
+producto.id || ""
+) +
+
+"&color=" +
+encodeURIComponent(
+producto.color || ""
+) +
+
+"&talla=" +
+encodeURIComponent(
+producto.talla || ""
+);
+
+
+return fetch(
+url,
+{
+method:"GET",
+cache:"no-store",
+keepalive:true
+}
+);
+
+}
+);
+
+
+await Promise.allSettled(
+peticiones
+);
+
+}
+
+</script>
+
+</body>
+</html>
